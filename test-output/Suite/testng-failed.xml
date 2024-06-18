@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite parallel="none" name="Failed suite [Suite]">
+  <test parallel="none" name="Test(failed)">
+    <classes>
+      <class name="com.hrms.testscripts.TC038">
+        <methods>
+          <include name="tc038"/>
+        </methods>
+      </class> <!-- com.hrms.testscripts.TC038 -->
+      <class name="com.hrms.testscripts.TC015_AddEmployee_Page">
+        <methods>
+          <include name="tc015"/>
+        </methods>
+      </class> <!-- com.hrms.testscripts.TC015_AddEmployee_Page -->
+      <class name="com.hrms.testscripts.EmpInformation_Page">
+        <methods>
+          <include name="tc"/>
+        </methods>
+      </class> <!-- com.hrms.testscripts.EmpInformation_Page -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->

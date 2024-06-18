@@ -1,0 +1,657 @@
+<html>
+<head>
+<title>TestNG:  Test</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Test</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>21/3/0</td>
+</tr><tr>
+<td>Started on:</td><td>Wed May 22 11:52:02 IST 2024</td>
+</tr>
+<tr><td>Total time:</td><td>439 seconds (439046 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.hrms.testscripts.EmpInformation_Page.tc()'><b>tc</b><br>Test class: com.hrms.testscripts.EmpInformation_Page<br/>
+<a href="#Output-890085657" onClick='toggleBox("Output-890085657", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-890085657" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-890085657">
+Application opened<br/>
+Login completed<br/>
+Employee list page opened<br/>
+null<br/>
+</div>
+</td>
+<td><div><pre>java.lang.NullPointerException: Cannot invoke &quot;String.equals(Object)&quot; because the return value of &quot;org.openqa.selenium.WebElement.getAttribute(String)&quot; is null
+	at com.hrms.testdata_obj_methods.EmpInfo_Page.dropdowns(EmpInfo_Page.java:154)
+	at com.hrms.testscripts.EmpInformation_Page.tc(EmpInformation_Page.java:23)
+... Removed 21 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace890085657", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace890085657'><pre>java.lang.NullPointerException: Cannot invoke &quot;String.equals(Object)&quot; because the return value of &quot;org.openqa.selenium.WebElement.getAttribute(String)&quot; is null
+	at com.hrms.testdata_obj_methods.EmpInfo_Page.dropdowns(EmpInfo_Page.java:154)
+	at com.hrms.testscripts.EmpInformation_Page.tc(EmpInformation_Page.java:23)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:80)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1198)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1123)
+	at org.testng.TestNG.run(TestNG.java:1031)
+	at org.testng.TestNG.privateMain(TestNG.java:1338)
+	at org.testng.TestNG.main(TestNG.java:1307)
+</pre></div></td>
+<td>11</td>
+<td>com.hrms.testscripts.EmpInformation_Page@2f54a33d</td></tr>
+<tr>
+<td title='com.hrms.testscripts.TC015_AddEmployee_Page.tc015()'><b>tc015</b><br>Test class: com.hrms.testscripts.TC015_AddEmployee_Page<br/>
+<a href="#Output-469383315" onClick='toggleBox("Output-469383315", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-469383315" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-469383315">
+Application opened<br/>
+Login completed<br/>
+Employee list page opened<br/>
+</div>
+</td>
+<td><div><pre>org.openqa.selenium.NoSuchElementException: Unable to locate element: Add Employee
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.15.0&apos;, revision: &apos;1d14b5521b&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.1&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Command: [d984ed37-e6e0-4e44-8973-aba2443ed95e, findElement {using=link text, value=Add Employee}]
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 126.0, moz:accessibilityChecks: false, moz:buildID: 20240509170740, moz:debuggerAddress: 127.0.0.1:24083, moz:geckodriverVersion: 0.34.0, moz:headless: false, moz:platformVersion: 10.0, moz:processID: 33924, moz:profile: C:\WINDOWS\SystemTemp\rust_..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://127.0.0.1:24083/devtoo..., se:cdpVersion: 85.0, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, userAgent: Mozilla/5.0 (Windows NT 10....}
+Session ID: d984ed37-e6e0-4e44-8973-aba2443ed95e
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:200)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:175)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:607)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:364)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:358)
+	at com.hrms.testdata_obj_methods.AddEmp_Page.addEmpPage(AddEmp_Page.java:58)
+	at com.hrms.testscripts.TC015_AddEmployee_Page.tc015(TC015_AddEmployee_Page.java:22)
+... Removed 24 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace469383315", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace469383315'><pre>org.openqa.selenium.NoSuchElementException: Unable to locate element: Add Employee
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.15.0&apos;, revision: &apos;1d14b5521b&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.1&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Command: [d984ed37-e6e0-4e44-8973-aba2443ed95e, findElement {using=link text, value=Add Employee}]
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 126.0, moz:accessibilityChecks: false, moz:buildID: 20240509170740, moz:debuggerAddress: 127.0.0.1:24083, moz:geckodriverVersion: 0.34.0, moz:headless: false, moz:platformVersion: 10.0, moz:processID: 33924, moz:profile: C:\WINDOWS\SystemTemp\rust_..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://127.0.0.1:24083/devtoo..., se:cdpVersion: 85.0, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, userAgent: Mozilla/5.0 (Windows NT 10....}
+Session ID: d984ed37-e6e0-4e44-8973-aba2443ed95e
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:200)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:175)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:607)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:364)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:358)
+	at com.hrms.testdata_obj_methods.AddEmp_Page.addEmpPage(AddEmp_Page.java:58)
+	at com.hrms.testscripts.TC015_AddEmployee_Page.tc015(TC015_AddEmployee_Page.java:22)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:80)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1198)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1123)
+	at org.testng.TestNG.run(TestNG.java:1031)
+	at org.testng.TestNG.privateMain(TestNG.java:1338)
+	at org.testng.TestNG.main(TestNG.java:1307)
+</pre></div></td>
+<td>24</td>
+<td>com.hrms.testscripts.TC015_AddEmployee_Page@60015ef5</td></tr>
+<tr>
+<td title='com.hrms.testscripts.TC038.tc038()'><b>tc038</b><br>Test class: com.hrms.testscripts.TC038<br/>
+<a href="#Output-1966114624" onClick='toggleBox("Output-1966114624", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1966114624" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1966114624">
+Application opened<br/>
+</div>
+</td>
+<td><div><pre>org.openqa.selenium.NoSuchElementException: Unable to locate element: *[name=&apos;username&apos;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.15.0&apos;, revision: &apos;1d14b5521b&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.1&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Command: [84c376be-4181-41a4-92d3-7134f2a47d49, findElement {using=name, value=username}]
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 126.0, moz:accessibilityChecks: false, moz:buildID: 20240509170740, moz:debuggerAddress: 127.0.0.1:30705, moz:geckodriverVersion: 0.34.0, moz:headless: false, moz:platformVersion: 10.0, moz:processID: 11140, moz:profile: C:\WINDOWS\SystemTemp\rust_..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://127.0.0.1:30705/devtoo..., se:cdpVersion: 85.0, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, userAgent: Mozilla/5.0 (Windows NT 10....}
+Session ID: 84c376be-4181-41a4-92d3-7134f2a47d49
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:200)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:175)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:607)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:66)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:364)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:358)
+	at com.hrms.testdata_obj_methods.Login_Page.login(Login_Page.java:25)
+	at com.hrms.testscripts.TC038.tc038(TC038.java:18)
+... Removed 24 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1966114624", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1966114624'><pre>org.openqa.selenium.NoSuchElementException: Unable to locate element: *[name=&apos;username&apos;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.15.0&apos;, revision: &apos;1d14b5521b&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.1&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Command: [84c376be-4181-41a4-92d3-7134f2a47d49, findElement {using=name, value=username}]
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 126.0, moz:accessibilityChecks: false, moz:buildID: 20240509170740, moz:debuggerAddress: 127.0.0.1:30705, moz:geckodriverVersion: 0.34.0, moz:headless: false, moz:platformVersion: 10.0, moz:processID: 11140, moz:profile: C:\WINDOWS\SystemTemp\rust_..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://127.0.0.1:30705/devtoo..., se:cdpVersion: 85.0, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, userAgent: Mozilla/5.0 (Windows NT 10....}
+Session ID: 84c376be-4181-41a4-92d3-7134f2a47d49
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:200)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:175)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:607)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:66)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:364)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:358)
+	at com.hrms.testdata_obj_methods.Login_Page.login(Login_Page.java:25)
+	at com.hrms.testscripts.TC038.tc038(TC038.java:18)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:80)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1198)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1123)
+	at org.testng.TestNG.run(TestNG.java:1031)
+	at org.testng.TestNG.privateMain(TestNG.java:1338)
+	at org.testng.TestNG.main(TestNG.java:1307)
+</pre></div></td>
+<td>16</td>
+<td>com.hrms.testscripts.TC038@2b4bac49</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.hrms.testscripts.TC001_Login_Page.tc001()'><b>tc001</b><br>Test class: com.hrms.testscripts.TC001_Login_Page<br/>
+<a href="#Output-504509135" onClick='toggleBox("Output-504509135", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-504509135" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-504509135">
+Application opened<br/>
+Login completed<br/>
+Logout completed<br/>
+Application closed<br/>
+</div>
+</td>
+<td></td>
+<td>14</td>
+<td>com.hrms.testscripts.TC001_Login_Page@7c83dc97</td></tr>
+<tr>
+<td title='com.hrms.testscripts.VerifyTitle.tc002()'><b>tc002</b><br>Test class: com.hrms.testscripts.VerifyTitle<br/>
+<a href="#Output-128077491" onClick='toggleBox("Output-128077491", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-128077491" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-128077491">
+Application opened<br/>
+Title matched<br/>
+Login completed<br/>
+Title matched<br/>
+Logout completed<br/>
+Application closed<br/>
+</div>
+</td>
+<td></td>
+<td>21</td>
+<td>com.hrms.testscripts.VerifyTitle@3571b748</td></tr>
+<tr>
+<td title='com.hrms.testscripts.TC002_Login_Page.tc002()'><b>tc002</b><br>Test class: com.hrms.testscripts.TC002_Login_Page<br/>
+<a href="#Output-2037147839" onClick='toggleBox("Output-2037147839", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-2037147839" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-2037147839">
+Application opened<br/>
+Login completed<br/>
+Error message should be displayed as:-Invalid credentials<br/>
+Application closed<br/>
+</div>
+</td>
+<td></td>
+<td>9</td>
+<td>com.hrms.testscripts.TC002_Login_Page@68567e20</td></tr>
+<tr>
+<td title='com.hrms.testscripts.TC003_Login_Page.tc003()'><b>tc003</b><br>Test class: com.hrms.testscripts.TC003_Login_Page<br/>
+<a href="#Output-734635893" onClick='toggleBox("Output-734635893", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-734635893" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-734635893">
+Application opened<br/>
+Login completed<br/>
+Error message should be displayed as:-Invalid credentials<br/>
+Application closed<br/>
+</div>
+</td>
+<td></td>
+<td>16</td>
+<td>com.hrms.testscripts.TC003_Login_Page@4470f8a6</td></tr>
+<tr>
+<td title='com.hrms.testscripts.TC004_Login_Page.tc004()'><b>tc004</b><br>Test class: com.hrms.testscripts.TC004_Login_Page<br/>
+<a href="#Output-1042865302" onClick='toggleBox("Output-1042865302", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1042865302" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1042865302">
+Application opened<br/>
+Login completed<br/>
+Error message should be displayed as:-Invalid credentials<br/>
+Application closed<br/>
+</div>
+</td>
+<td></td>
+<td>9</td>
+<td>com.hrms.testscripts.TC004_Login_Page@76ed1b7c</td></tr>
+<tr>
+<td title='com.hrms.testscripts.TC005_Login_Page.tc005()'><b>tc005</b><br>Test class: com.hrms.testscripts.TC005_Login_Page<br/>
+<a href="#Output-1701388960" onClick='toggleBox("Output-1701388960", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1701388960" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1701388960">
+Application opened<br/>
+Login completed<br/>
+Application closed<br/>
+</div>
+</td>
+<td></td>
+<td>16</td>
+<td>com.hrms.testscripts.TC005_Login_Page@37f1104d</td></tr>
+<tr>
+<td title='com.hrms.testscripts.TC006_Login_Page.tc006()'><b>tc006</b><br>Test class: com.hrms.testscripts.TC006_Login_Page<br/>
+<a href="#Output-1369541409" onClick='toggleBox("Output-1369541409", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1369541409" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1369541409">
+Application opened<br/>
+password format:<br/>
+*<br/>
+*<br/>
+*<br/>
+*<br/>
+*<br/>
+*<br/>
+*<br/>
+*<br/>
+Application closed<br/>
+</div>
+</td>
+<td></td>
+<td>9</td>
+<td>com.hrms.testscripts.TC006_Login_Page@484970b0</td></tr>
+<tr>
+<td title='com.hrms.testscripts.TC007_Login_Page.tc007()'><b>tc007</b><br>Test class: com.hrms.testscripts.TC007_Login_Page<br/>
+<a href="#Output-2031467683" onClick='toggleBox("Output-2031467683", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-2031467683" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-2031467683">
+Application opened<br/>
+username=Admin<br/>
+password=<br/>
+Login completed<br/>
+Application closed<br/>
+</div>
+</td>
+<td></td>
+<td>12</td>
+<td>com.hrms.testscripts.TC007_Login_Page@3f56875e</td></tr>
+<tr>
+<td title='com.hrms.testscripts.TC008_Login_Page.tc008()'><b>tc008</b><br>Test class: com.hrms.testscripts.TC008_Login_Page<br/>
+<a href="#Output-1573848946" onClick='toggleBox("Output-1573848946", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1573848946" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1573848946">
+Application opened<br/>
+username=<br/>
+password=admin123<br/>
+Login completed<br/>
+Application closed<br/>
+</div>
+</td>
+<td></td>
+<td>9</td>
+<td>com.hrms.testscripts.TC008_Login_Page@55740540</td></tr>
+<tr>
+<td title='com.hrms.testscripts.TC009_Login_Page.tc009()'><b>tc009</b><br>Test class: com.hrms.testscripts.TC009_Login_Page<br/>
+<a href="#Output-1076462213" onClick='toggleBox("Output-1076462213", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1076462213" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1076462213">
+Application opened<br/>
+Login page heading is:-Login<br/>
+Application closed<br/>
+</div>
+</td>
+<td></td>
+<td>14</td>
+<td>com.hrms.testscripts.TC009_Login_Page@2f465398</td></tr>
+<tr>
+<td title='com.hrms.testscripts.TC011_AddEmployee_Page.tc011()'><b>tc011</b><br>Test class: com.hrms.testscripts.TC011_AddEmployee_Page<br/>
+<a href="#Output-885403615" onClick='toggleBox("Output-885403615", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-885403615" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-885403615">
+Application opened<br/>
+Login completed<br/>
+Employee list page opened<br/>
+Add Employee page opened<br/>
+save button should be clicked<br/>
+Logout completed<br/>
+Application closed<br/>
+</div>
+</td>
+<td></td>
+<td>22</td>
+<td>com.hrms.testscripts.TC011_AddEmployee_Page@394a2528</td></tr>
+<tr>
+<td title='com.hrms.testscripts.TC012_AddEmployee_Page.tc012()'><b>tc012</b><br>Test class: com.hrms.testscripts.TC012_AddEmployee_Page<br/>
+<a href="#Output-706665172" onClick='toggleBox("Output-706665172", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-706665172" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-706665172">
+Application opened<br/>
+Login completed<br/>
+Employee list page opened<br/>
+Add Employee page opened<br/>
+save button should be clicked<br/>
+Logout completed<br/>
+Application closed<br/>
+</div>
+</td>
+<td></td>
+<td>16</td>
+<td>com.hrms.testscripts.TC012_AddEmployee_Page@7748410a</td></tr>
+<tr>
+<td title='com.hrms.testscripts.TC013_AddEmployee_Page.tc013()'><b>tc013</b><br>Test class: com.hrms.testscripts.TC013_AddEmployee_Page<br/>
+<a href="#Output-857245202" onClick='toggleBox("Output-857245202", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-857245202" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-857245202">
+Application opened<br/>
+Login completed<br/>
+Employee list page opened<br/>
+Add Employee page opened<br/>
+save button should be clicked<br/>
+Logout completed<br/>
+Application closed<br/>
+</div>
+</td>
+<td></td>
+<td>29</td>
+<td>com.hrms.testscripts.TC013_AddEmployee_Page@7c1e2a9e</td></tr>
+<tr>
+<td title='com.hrms.testscripts.TC014_AddEmployee_Page.tc014()'><b>tc014</b><br>Test class: com.hrms.testscripts.TC014_AddEmployee_Page<br/>
+<a href="#Output-1329492804" onClick='toggleBox("Output-1329492804", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1329492804" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1329492804">
+Application opened<br/>
+Login completed<br/>
+Employee list page opened<br/>
+Add Employee page opened<br/>
+save button should be clicked<br/>
+Logout completed<br/>
+Application closed<br/>
+</div>
+</td>
+<td></td>
+<td>20</td>
+<td>com.hrms.testscripts.TC014_AddEmployee_Page@740773a3</td></tr>
+<tr>
+<td title='com.hrms.testscripts.TC016_AddEmployee_Page.tc016()'><b>tc016</b><br>Test class: com.hrms.testscripts.TC016_AddEmployee_Page<br/>
+<a href="#Output-1623761043" onClick='toggleBox("Output-1623761043", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1623761043" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1623761043">
+Application opened<br/>
+Login completed<br/>
+Employee list page opened<br/>
+Add Employee page opened<br/>
+save button should be clicked<br/>
+Logout completed<br/>
+Application closed<br/>
+</div>
+</td>
+<td></td>
+<td>22</td>
+<td>com.hrms.testscripts.TC016_AddEmployee_Page@fd07cbb</td></tr>
+<tr>
+<td title='com.hrms.testscripts.TC017_AddEmployee_Page.tc017()'><b>tc017</b><br>Test class: com.hrms.testscripts.TC017_AddEmployee_Page<br/>
+<a href="#Output-1388972756" onClick='toggleBox("Output-1388972756", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1388972756" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1388972756">
+Application opened<br/>
+Login completed<br/>
+Employee list page opened<br/>
+Add Employee page opened<br/>
+save button should be clicked<br/>
+Logout completed<br/>
+Application closed<br/>
+</div>
+</td>
+<td></td>
+<td>24</td>
+<td>com.hrms.testscripts.TC017_AddEmployee_Page@672872e1</td></tr>
+<tr>
+<td title='com.hrms.testscripts.TC018_AddEmployee_Page.tc018()'><b>tc018</b><br>Test class: com.hrms.testscripts.TC018_AddEmployee_Page<br/>
+<a href="#Output-1969925628" onClick='toggleBox("Output-1969925628", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1969925628" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1969925628">
+Application opened<br/>
+Login completed<br/>
+Employee list page opened<br/>
+Add Employee page opened<br/>
+save button should be clicked<br/>
+Logout completed<br/>
+Application closed<br/>
+</div>
+</td>
+<td></td>
+<td>15</td>
+<td>com.hrms.testscripts.TC018_AddEmployee_Page@3e96bacf</td></tr>
+<tr>
+<td title='com.hrms.testscripts.TC019_AddEmployee_Page.tc019()'><b>tc019</b><br>Test class: com.hrms.testscripts.TC019_AddEmployee_Page<br/>
+<a href="#Output-651235118" onClick='toggleBox("Output-651235118", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-651235118" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-651235118">
+Application opened<br/>
+Login completed<br/>
+Employee list page opened<br/>
+Add Employee page opened<br/>
+<br/>
+Logout completed<br/>
+Application closed<br/>
+</div>
+</td>
+<td></td>
+<td>36</td>
+<td>com.hrms.testscripts.TC019_AddEmployee_Page@32910148</td></tr>
+<tr>
+<td title='com.hrms.testscripts.TC020_AddEmployee_Page.tc020()'><b>tc020</b><br>Test class: com.hrms.testscripts.TC020_AddEmployee_Page<br/>
+<a href="#Output-435175610" onClick='toggleBox("Output-435175610", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-435175610" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-435175610">
+Application opened<br/>
+Login completed<br/>
+Employee list page opened<br/>
+Add Employee page opened<br/>
+<br/>
+Logout completed<br/>
+Application closed<br/>
+</div>
+</td>
+<td></td>
+<td>28</td>
+<td>com.hrms.testscripts.TC020_AddEmployee_Page@6236eb5f</td></tr>
+<tr>
+<td title='com.hrms.testscripts.TC021_AddEmployee_Page.tc021()'><b>tc021</b><br>Test class: com.hrms.testscripts.TC021_AddEmployee_Page<br/>
+<a href="#Output-449240381" onClick='toggleBox("Output-449240381", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-449240381" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-449240381">
+Application opened<br/>
+Login completed<br/>
+Employee list page opened<br/>
+Add Employee page opened<br/>
+heading:-Add Employee<br/>
+Logout completed<br/>
+Application closed<br/>
+</div>
+</td>
+<td></td>
+<td>16</td>
+<td>com.hrms.testscripts.TC021_AddEmployee_Page@11fc564b</td></tr>
+<tr>
+<td title='com.hrms.testscripts.TC022_AddEmployee_Page.tc022()'><b>tc022</b><br>Test class: com.hrms.testscripts.TC022_AddEmployee_Page<br/>
+<a href="#Output-1146719991" onClick='toggleBox("Output-1146719991", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1146719991" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1146719991">
+Application opened<br/>
+Login completed<br/>
+Employee list page opened<br/>
+Add Employee page opened<br/>
+labels and mandatory fields are:<br/>
+Employee Full Name<br/>
+Employee Id<br/>
+<br/>
+Username<br/>
+Status<br/>
+Enabled<br/>
+Disabled<br/>
+Password<br/>
+Confirm Password<br/>
+important information:Accepts jpg, .png, .gif up to 1MB. Recommended dimensions: 200px X 200px<br/>
+Logout completed<br/>
+Application closed<br/>
+</div>
+</td>
+<td></td>
+<td>20</td>
+<td>com.hrms.testscripts.TC022_AddEmployee_Page@fa36558</td></tr>
+</table><p>
+</body>
+</html>

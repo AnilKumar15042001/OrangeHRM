@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="com.hrms.testscripts.TC012_AddEmployee_Page"/>
+      <class name="com.hrms.testscripts.TC019_AddEmployee_Page"/>
+      <class name="com.hrms.testscripts.TC020_AddEmployee_Page"/>
+      <class name="com.hrms.testscripts.VerifyTitle"/>
+      <class name="com.hrms.testscripts.TC003_Login_Page"/>
+      <class name="com.hrms.testscripts.TC009_Login_Page"/>
+      <class name="com.hrms.testscripts.TC038"/>
+      <class name="com.hrms.testscripts.TC014_AddEmployee_Page"/>
+      <class name="com.hrms.testscripts.TC007_Login_Page"/>
+      <class name="com.hrms.testscripts.TC016_AddEmployee_Page"/>
+      <class name="com.hrms.testscripts.TC005_Login_Page"/>
+      <class name="com.hrms.testscripts.TC006_Login_Page"/>
+      <class name="com.hrms.testscripts.TC018_AddEmployee_Page"/>
+      <class name="com.hrms.testscripts.TC013_AddEmployee_Page"/>
+      <class name="com.hrms.testscripts.TC001_Login_Page"/>
+      <class name="com.hrms.testscripts.TC021_AddEmployee_Page"/>
+      <class name="com.hrms.testscripts.TC022_AddEmployee_Page"/>
+      <class name="com.hrms.testscripts.EmpInformation_Page"/>
+      <class name="com.hrms.testscripts.TC011_AddEmployee_Page"/>
+      <class name="com.hrms.testscripts.TC008_Login_Page"/>
+      <class name="com.hrms.testscripts.TC002_Login_Page"/>
+      <class name="com.hrms.testscripts.TC017_AddEmployee_Page"/>
+      <class name="com.hrms.testscripts.TC004_Login_Page"/>
+      <class name="com.hrms.testscripts.TC015_AddEmployee_Page"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
