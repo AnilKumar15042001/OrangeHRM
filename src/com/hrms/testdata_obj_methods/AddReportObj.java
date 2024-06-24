@@ -59,13 +59,13 @@ public class AddReportObj extends BaseClass{
 	public static void setSelectionCriteriaDD(String selectionCriteria) {
 		selectionCriteriaDD.click();
 		List<WebElement> options=driver.findElements(By.tagName("div"));
-		BaseClass.selectBootStrapDropDown(options, selectionCriteria);
+		BaseClass.selectValues(options, selectionCriteria);
 	}
 
 	public static void setIncludeDD(String include) {
 		includeDD.click();
 		List<WebElement> options=driver.findElements(By.tagName("div"));
-		BaseClass.selectBootStrapDropDown(options, include);
+		BaseClass.selectValues(options, include);
 	}
 
 	public static void setPlusBtn() {
@@ -76,13 +76,13 @@ public class AddReportObj extends BaseClass{
 	public void setDisplayFieldDD(String displayField) {
 		displayFieldDD.click();
 		List<WebElement> options=driver.findElements(By.tagName("div"));
-		BaseClass.selectBootStrapDropDown(options, displayField);
+		BaseClass.selectValues(options, displayField);
 	}
 
 	public static void setSelectDisplayFieldDD(String selectDisplayField) {
 		selectDisplayFieldDD.click();
 		List<WebElement> options=driver.findElements(By.tagName("div"));
-		BaseClass.selectBootStrapDropDown(options, selectDisplayField);
+		BaseClass.selectValues(options, selectDisplayField);
 	}
 
 	public static void setSaveBtn() {

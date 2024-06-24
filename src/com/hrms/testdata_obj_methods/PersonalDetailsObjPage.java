@@ -11,113 +11,149 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.hrms.utility.BaseClass;
 
-public class PersonalDetailsObjPage extends BaseClass{
+public class PersonalDetailsObjPage extends BaseClass {
 
 	public static WebDriver driver;
-	
-	public PersonalDetailsObjPage(WebDriver driver)
-	{
-		this.driver=driver;
+
+	public PersonalDetailsObjPage(WebDriver driver) {
+		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
+
+	@FindBy(xpath = "(//div[contains(@class,'oxd-input-field-bottom-space')]/descendant::input)[1]")
+	@CacheLookup
+	public static WebElement firstName;
+
+	@FindBy(xpath = "(//div[contains(@class,'oxd-input-field-bottom-space')]/descendant::input)[2]")
+	@CacheLookup
+	public static WebElement middleName;
+
+	@FindBy(xpath = "(//div[contains(@class,'oxd-input-field-bottom-space')]/descendant::input)[3]")
+	@CacheLookup
+	public static WebElement lastName;
+
+	@FindBy(xpath = "(//div[contains(@class,'oxd-input-field-bottom-space')]/descendant::input)[4]")
+	@CacheLookup
+	public static WebElement employeeId;
+
+	@FindBy(xpath = "(//div[contains(@class,'oxd-input-field-bottom-space')]/descendant::input)[5]")
+	@CacheLookup
+	public static WebElement otherId;
+
+	@FindBy(xpath = "(//div[contains(@class,'oxd-input-field-bottom-space')]/descendant::input)[6]")
+	@CacheLookup
+	public static WebElement driversLicenseNumber;
+
+	@FindBy(xpath = "(//div[@class='oxd-select-text--after'])[1]")
+	@CacheLookup
+	public static WebElement nationality;
+
+	@FindBy(xpath = "(//div[@class='oxd-select-text--after'])[2]")
+	@CacheLookup
+	public static WebElement maritalStatus;
+
+	@FindBy(xpath = "(//div[@class='oxd-select-text--after'])[3]")
+	@CacheLookup
+	public static WebElement bloodType;
+
+	@FindBy(xpath = "(//div[@class='oxd-radio-wrapper']//span)[1]")
+	@CacheLookup
+	public static WebElement male;
+
+	@FindBy(xpath = "(//div[@class='oxd-radio-wrapper']//span)[2]")
+	@CacheLookup
+	public static WebElement female;
+
+	@FindBy(xpath = "(//button[@type='submit'])[1]")
+	@CacheLookup
+	public static WebElement save;
 	
+	@FindBy(xpath = "(//div[@class='oxd-date-wrapper']/descendant::i)[2]")
+	@CacheLookup
+	public static WebElement dateOfBirth;
+	@FindBy(xpath = "//div[2]/div[1]/div[2]/div[1]/div[1]/i[1]")
+	@CacheLookup
+	public static WebElement licenseExpiryDate;
 
-@FindBy(xpath="//input[@placeholder='First Name']")
-@CacheLookup public static WebElement firstName;
+	public static void setFirstName(String fName) throws Exception {
+		BaseClass.textBoxFunctionality(firstName, fName);
+	}
 
-@FindBy(xpath="//input[@placeholder='Middle Name']")
-@CacheLookup public static WebElement middleName;
+	public static void setMiddleName(String mName) throws Exception {
+		BaseClass.textBoxFunctionality(middleName, mName);
+	}
 
-@FindBy(xpath="//input[@placeholder='Last Name']")
-@CacheLookup public static WebElement lastName;
+	public static void setLastName(String lName) throws Exception {
+		BaseClass.textBoxFunctionality(lastName, lName);
+	}
 
-@FindBy(xpath="(//input[contains(@class,'input--focus')])[1]")
-@CacheLookup public static WebElement employeeId;
+	public static void setEmployeeId(String empId) throws Exception {
+		BaseClass.textBoxFunctionality(employeeId, empId);
+	}
 
-@FindBy(xpath="(//input[contains(@class,'input--active')])[2]")
-@CacheLookup public static WebElement otherId;
+	public static void setOtherId(String othId) throws Exception {
+		BaseClass.textBoxFunctionality(otherId, othId);
+	}
 
-@FindBy(xpath="(//input[@class='oxd-input oxd-input--active'])[3]")
-@CacheLookup public static WebElement driversLicenseNumber;
+	public static void setDriversLicenseNumber(String licenseNumber) throws Exception {
+		BaseClass.textBoxFunctionality(driversLicenseNumber, licenseNumber);
+	}
 
-@FindBy(xpath="(//div[@class='oxd-select-text--after'])[1]")
-@CacheLookup public static WebElement nationality;
+	public static void setNationality(String national) throws Exception {
+		BaseClass.explicityWait(nationality);
+		BaseClass.scrollElement(nationality);
+		nationality.click();
+		List<WebElement> options = driver.findElements(By.xpath("//div[@class='oxd-select-option']//span"));
+		BaseClass.selectValues(options, national);
+	}
 
-@FindBy(xpath="(//div[@class='oxd-select-text--after'])[2]")
-@CacheLookup public static WebElement maritalStatus;
+	public static void setMaritalStatus(String maritalStus) {
+		BaseClass.scrollElement(maritalStatus);
+		BaseClass.explicityWait(maritalStatus);
+		maritalStatus.click();
+		List<WebElement> options = driver.findElements(By.xpath("//div[@role='listbox']//span"));
+		BaseClass.selectValues(options, maritalStus);
+	}
 
-@FindBy(xpath="(//div[@class='oxd-select-text--after'])[3]")
-@CacheLookup public static WebElement bloodType;
+	public static void setBloodType(String bloodGroup) {
+		BaseClass.explicityWait(bloodType);
+		BaseClass.scrollElement(bloodType);
+		bloodType.click();
+		List<WebElement> options = driver.findElements(By.xpath("//div[@role='option']//span"));
+		BaseClass.selectValues(options, bloodGroup);
+	}
 
-@FindBy(xpath="(//div[@class='oxd-radio-wrapper']//span)[1]")
-@CacheLookup public static WebElement male;
+	public static void setMale() throws Exception {
+		BaseClass.radioButtonFunctionality(male);
+	}
 
-@FindBy(xpath="(//div[@class='oxd-radio-wrapper']//span)[2]")
-@CacheLookup public static WebElement female;
+	public static void setFemale() throws Exception {
+		BaseClass.radioButtonFunctionality(female);
+	}
 
-@FindBy(xpath="(//button[@type='submit'])[1]")
-@CacheLookup public static WebElement save;
-
-public static void setFirstName(String fName) {
-	firstName.clear();
-	firstName.sendKeys(fName);
-}
-
-public static void setMiddleName(String mName) {
-	middleName.clear();
-	middleName.sendKeys(mName);
-}
-
-public static void setLastName(String lName) {
-	lastName.clear();
-	lastName.sendKeys(lName);
-}
-
-public static void setEmployeeId(String empId) {
-	employeeId.clear();
-	employeeId.sendKeys(empId);
-}
-
-public static void setOtherId(String othId) {
-	otherId.clear();
-	otherId.sendKeys(othId);
-}
-
-public static void setDriversLicenseNumber(String licenseNumber) {
-	driversLicenseNumber.clear();
-	driversLicenseNumber.sendKeys(licenseNumber);
-}
-
-public static void setNationality(String national) {
-	BaseClass.explicityWait(nationality);
-	nationality.click();
-	List<WebElement> options=driver.findElements(By.xpath("//div[@class='oxd-select-option']//span"));
-	BaseClass.selectBootStrapDropDown(options, national);
-}
-
-public static void setMaritalStatus(String maritalStus) {
-	BaseClass.explicityWait(maritalStatus);
-	maritalStatus.click();
-	List<WebElement> options=driver.findElements(By.xpath("//div[@role='listbox']//span"));
-	BaseClass.selectBootStrapDropDown(options, maritalStus);
-}
-
-public static void setBloodType(String bloodGroup) {
-	BaseClass.explicityWait(bloodType);
-	bloodType.click();
-	List<WebElement> options=driver.findElements(By.xpath("//div[@role='option']//span"));
-	BaseClass.selectBootStrapDropDown(options, bloodGroup);
-}
-
-public static void setMale(WebElement male) {
-	PersonalDetailsObjPage.male = male;
-}
-
-public static void setFemale(WebElement female) {
-	PersonalDetailsObjPage.female = female;
-}
-
-public static void setSave(WebElement save) {
-	PersonalDetailsObjPage.save = save;
-}
+	public static void setSave() throws Exception {
+		BaseClass.buttonFunctionality(save);
+	}
+	
+	public static void setDateOfBirth(String year,String month,String date) throws Exception
+	{
+		String yearXpath="//ul[@class='oxd-calendar-selector']/child::li[2]/descendant::i";
+		String monthXpath="//ul[@class='oxd-calendar-selector']/child::li[1]/descendant::i";
+		String dateXpath="//div[@class='oxd-calendar-dates-grid']//div//div";
+		String listXpath="//ul[@role='menu']//li";
+		dateOfBirth.click();
+		Thread.sleep(3000);
+		BaseClass.dateOrCalenderControl(year, month, date, yearXpath, monthXpath, dateXpath, listXpath);
+	}
+	
+	public static void licenseExpiryDate(String year,String month,String date) throws InterruptedException
+	{
+		String yearXpath="//li[@class='oxd-calendar-selector-year']//i";
+		String monthXpath="//li[@class='oxd-calendar-selector-month']//i";
+		String dateXpath="//div[@class='oxd-calendar-dates-grid']/div/div";
+		String listValue="//ul[@role='menu']/li";
+		licenseExpiryDate.click();
+		Thread.sleep(3000);
+		BaseClass.dateOrCalenderControl(year,month,date,yearXpath,monthXpath,dateXpath,listValue);
+	}
 }

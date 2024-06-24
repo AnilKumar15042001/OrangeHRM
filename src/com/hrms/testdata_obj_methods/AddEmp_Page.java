@@ -13,8 +13,8 @@ public class AddEmp_Page extends BaseClass{
 	static By txt_lastname=By.name("lastName");
 	static By txt_firstname=By.name("firstName");
 	static By txt_middlename=By.name("middleName");
-	static By txt_empid=By.xpath("//*[@id='app']/div[1]/div[2]/div[2]/div/div/form/div[1]/div[2]/div[1]/div[2]/div/div/div[2]/input");
-	static By save_btn=By.xpath("//*[@id='app']/div[1]/div[2]/div[2]/div/div/form/div[2]/button[2]");
+	static By txt_empid=By.xpath("(//input[@class='oxd-input oxd-input--active'])[2]");
+	static By save_btn=By.xpath("button[type='submit']");
 	static By cancel_btn=By.xpath("//button[text()=' Cancel ']");
 	static By PIM_module=By.xpath("//a[contains(@href,'PimModule')]");
 	static By addEmp_Submodule=By.linkText("Add Employee");
@@ -22,11 +22,11 @@ public class AddEmp_Page extends BaseClass{
 	static By addEmp_heading=By.xpath("//h6[text()='Add Employee']");
 	
 	
-	static By txt_un=By.xpath("//*[@id='app']/div[1]/div[2]/div[2]/div/div/form/div[1]/div[2]/div[3]/div/div[1]/div/div[2]/input");
-	static By txt_pwd=By.xpath("//*[@id='app']/div[1]/div[2]/div[2]/div/div/form/div[1]/div[2]/div[4]/div/div[1]/div/div[2]/input");
-	static By txt_confpwd=By.xpath("//*[@id='app']/div[1]/div[2]/div[2]/div/div/form/div[1]/div[2]/div[4]/div/div[2]/div/div[2]/input");
-	static By enabled_btn=By.xpath("//*[@id='app']/div[1]/div[2]/div[2]/div/div/form/div[1]/div[2]/div[3]/div/div[2]/div/div[2]/div[1]/div[2]/div/label/span");
-	static By disabled_btn=By.xpath("//*[@id='app']/div[1]/div[2]/div[2]/div/div/form/div[1]/div[2]/div[3]/div/div[2]/div/div[2]/div[2]/div[2]/div/label/span");
+	static By txt_un=By.xpath("(//input[@autocomplete='off'])[1]");
+	static By txt_pwd=By.xpath("(//input[@autocomplete='off'])[2]");
+	static By txt_confpwd=By.xpath("(//input[@autocomplete='off'])[3]");
+	static By enabled_btn=By.xpath("(//div[@class='oxd-input-group']//span)[1]");
+	static By disabled_btn=By.xpath("(//div[@class='oxd-input-group']//span)[2]");
 	
 	
 //methods

@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -53,6 +54,7 @@ public class BaseClass {
 	public static EmployeeReportsObj ero;
 	public static AddReportObj aro;
 	public static PersonalDetailsObjPage pdop;
+	public static JavascriptExecutor js;
 
 //open application
 	public static void openApplication(String browser) throws Exception {
@@ -131,7 +133,7 @@ public class BaseClass {
 		}
 	}
 
-	public static void selectBootStrapDropDown(List<WebElement> options, String value) {
+	public static void selectValues(List<WebElement> options, String value) {
 		for (WebElement option : options) {
 			if (option.getText().equalsIgnoreCase(value)) {
 				System.out.println(option.getText());
@@ -235,57 +237,164 @@ public class BaseClass {
 		return true;
 	}
 	
-	public static void verifyPageTitle(String title)
+	public static void verifyPageTitle()
 	{
-		if(driver.getTitle().equalsIgnoreCase("503 Service Temporarily Unavailable"))
+		if(driver.getTitle().contains("503 Service Temporarily Unavailable"))
 		{
 			driver.close();
 		}
-		else
-		{
-			Reporter.log(driver.getTitle());	
-		}
 	}
 	
-	public static void dateOrCalenderControl() throws InterruptedException
+	public static void dateOrCalenderControl(String year,String month,String date,String yearXpath,String monthXpath,String dateXpath,String listXpath) throws InterruptedException
 	{
-		driver.findElement(By.xpath("//div[2]/div[1]/div[2]/div[1]/div[1]/i[1]")).click();
 		Thread.sleep(3000);
-		driver.findElement(By.xpath("//li[@class='oxd-calendar-selector-year']//i")).click();
-		List<WebElement> elements=driver.findElements(By.xpath("//ul[@role='menu']/li"));
-		selectBootStrapDropDown(elements,"2000");
+		driver.findElement(By.xpath(yearXpath)).click();
+		List<WebElement> years=driver.findElements(By.xpath(listXpath));
+		selectValues(years,year);
 		Thread.sleep(3000);
-		driver.findElement(By.xpath("//li[@class='oxd-calendar-selector-month']//i")).click();
-		List<WebElement> element=driver.findElements(By.xpath("//ul[@role='menu']/li"));
-		selectBootStrapDropDown(element,"June");
+		driver.findElement(By.xpath(monthXpath)).click();
+		List<WebElement> months=driver.findElements(By.xpath(listXpath));
+		selectValues(months,month);
 		Thread.sleep(3000);
-		List<WebElement> date=driver.findElements(By.xpath("//div[@class='oxd-calendar-dates-grid']/div/div"));
-		selectBootStrapDropDown(date,"22");
+		List<WebElement> dates=driver.findElements(By.xpath(dateXpath));
+		selectValues(dates,date);
 	}
-	public static void selectFutureDate(String day,String month,String year)
+	
+	public static void selectFutureDate(String day,String month,String year,String yearXpath,String monthXpath,String nextButtonXpath,String listXpath)
 	{
-		String currentYear=driver.findElement(By.xpath("//span[contains(@class,'year')]")).getText();
-		String currentMonth=driver.findElement(By.xpath("//span[contains(@class,'month')]")).getText();
-		
 		while(true)
 		{
+			String currentYear=driver.findElement(By.xpath(yearXpath)).getText();
+			String currentMonth=driver.findElement(By.xpath(monthXpath)).getText();
+			
 			if(currentMonth.equalsIgnoreCase(month) && currentYear.equalsIgnoreCase(year))
 			{
 				break;
 			}
-			driver.findElement(By.xpath("//span[contains(@class,'circle-triangle-e')]")).click();
+			driver.findElement(By.xpath(nextButtonXpath)).click();
 		}
-	}
-	public static void findCurrentPage()
-	{
-		int pages=driver.findElements(By.xpath("//li//button")).size();
-		for(int i=1;i<=pages;i++)
+		List<WebElement> dates=driver.findElements(By.xpath(listXpath));
+		for(WebElement date:dates)
 		{
-			if(i>1)
+			if(date.getText().equals(day))
 			{
-				driver.findElement(By.xpath("//li//button["+i+"]")).click();
+				date.click();
+				break;
 			}
 		}
 	}
-	//li//button[@type='button']
+	
+	public static void selectPastDate(String day,String month,String year,String yearXpath,String monthXpath,String backButtonXpath,String listXpath)
+	{
+		while(true)
+		{
+			String currentYear=driver.findElement(By.xpath(yearXpath)).getText();
+			String currentMonth=driver.findElement(By.xpath(monthXpath)).getText();
+			
+			if(currentMonth.equalsIgnoreCase(month) && currentYear.equalsIgnoreCase(year))
+			{
+				break;
+			}
+			driver.findElement(By.xpath(backButtonXpath)).click();
+		}
+		List<WebElement> dates=driver.findElements(By.xpath(listXpath));
+		for(WebElement date:dates)
+		{
+			if(date.getText().equals(day))
+			{
+				date.click();
+				break;
+			}
+		}
+	}
+	
+	public static void cancelAndDeleteButton(String xpath)
+	{
+		wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebElement button=wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+		button.click();
+	}
+	
+	public static void findDataInTable(String tableDataXpath,String nextPageButtonXpath,String employeeInfo) throws InterruptedException
+	{
+		boolean stop=false;
+		while(!stop)
+		{
+			List<WebElement> tableData=driver.findElements(By.xpath(tableDataXpath));
+			for(WebElement data:tableData)
+			{
+				if(data.getText().equalsIgnoreCase(employeeInfo))
+				{
+					System.out.println(data.getText());
+					stop=true;
+					break;
+				}
+			}
+			if(!stop)
+			{
+				try
+				{
+					driver.findElement(By.xpath(nextPageButtonXpath)).click();
+				}
+				catch(Exception e)
+				{
+					System.out.println(e.getMessage());
+					driver.findElement(By.xpath(nextPageButtonXpath)).click();
+				}
+			}
+			else
+			{
+				break;
+			}
+		
+		}
+	}
+	
+	public static void buttonFunctionality(WebElement button) throws Exception
+	{
+		Thread.sleep(3000);
+		if(button.isDisplayed() && button.isEnabled())
+		{
+			button.click();
+		}
+		else
+		{
+			throw new Exception("Button is displayed as:"+button.isDisplayed()+"Button is enabled as:"+button.isEnabled());
+		}
+	}
+	
+	public static void radioButtonFunctionality(WebElement radioButton) throws Exception
+	{
+		Thread.sleep(3000);
+		if(radioButton.isDisplayed() && radioButton.isEnabled() && !radioButton.isSelected())
+		{
+			radioButton.click();
+		}
+		else
+		{
+			throw new Exception("RadioButton is displayed as:"+radioButton.isDisplayed()+"RadioButton is enabled as:"+radioButton.isEnabled()+"RadioButton is selected as:"+radioButton.isSelected());
+		}
+	}
+	
+	public static void textBoxFunctionality(WebElement textBox,String value) throws Exception
+	{
+		Thread.sleep(3000);
+		js = (JavascriptExecutor) driver;
+		if(textBox.isDisplayed() && textBox.isEnabled())
+		{
+			//js.executeScript("arguments[0].value='';", textBox);
+			js.executeScript("arguments[0].value=arguments[1];", textBox, value);
+		}
+		else
+		{
+			throw new Exception("TextBox is displayed as:"+textBox.isDisplayed()+"TextBox is enabled as:"+textBox.isEnabled());
+		}
+	}
+	
+	public static void scrollElement(WebElement element)
+	{
+		js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView();", element);
+//		js.executeScript("window.scrollBy(0,-1000);");
+	}
 }
