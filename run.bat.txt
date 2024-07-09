@@ -1,0 +1,5 @@
+
+set RealTime_Selenium_Project=C:\Automation Testing\RealTime_Selenium_Project
+cd %RealTime_Selenium_Project%
+set classpath=%RealTime_Selenium_Project%\bin;%projectLocation%\lib\*
+java org.testng.TestNG %RealTime_Selenium_Project%\Selenium.xml
