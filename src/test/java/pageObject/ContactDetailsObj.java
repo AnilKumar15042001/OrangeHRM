@@ -20,23 +20,23 @@ public class ContactDetailsObj extends BaseClass {
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(xpath = "(//input[contains(@class,'oxd-input--active')])[2]")
+	@FindBy(xpath = "//label[.='Street 1']/ancestor::div[contains(@class,'input-field-bottom-space')]/descendant::input")
 	@CacheLookup
 	public WebElement street1;
 
-	@FindBy(xpath = "(//input[contains(@class,'oxd-input--active')])[3]")
+	@FindBy(xpath = "//label[.='Street 2']/ancestor::div[contains(@class,'input-field-bottom-space')]/descendant::input")
 	@CacheLookup
 	public WebElement street2;
 
-	@FindBy(xpath = "(//input[contains(@class,'oxd-input--active')])[4]")
+	@FindBy(xpath = "//label[.='City']/ancestor::div[contains(@class,'input-field-bottom-space')]/descendant::input")
 	@CacheLookup
 	public WebElement city;
 
-	@FindBy(xpath="(//input[contains(@class,'oxd-input--active')])[5]")
+	@FindBy(xpath="//label[.='State/Province']/ancestor::div[contains(@class,'input-field-bottom-space')]/descendant::input")
 	@CacheLookup 
 	public WebElement stateProvince;
 
-	@FindBy(xpath="(//input[contains(@class,'oxd-input--active')])[6]")
+	@FindBy(xpath="//label[.='Zip/Postal Code']/ancestor::div[contains(@class,'input-field-bottom-space')]/descendant::input")
 	@CacheLookup 
 	public WebElement zipPostalCode;
 
@@ -44,29 +44,29 @@ public class ContactDetailsObj extends BaseClass {
 	@CacheLookup 
 	public WebElement country;
 
-	@FindBy(xpath="(//input[contains(@class,'oxd-input--active')])[7]")
+	@FindBy(xpath="//label[.='Home']/ancestor::div[contains(@class,'input-field-bottom-space')]/descendant::input")
 	@CacheLookup
 	public WebElement home;
 
-	@FindBy(xpath = "(//input[contains(@class,'oxd-input--active')])[8]")
+	@FindBy(xpath = "//label[.='Mobile']/ancestor::div[contains(@class,'input-field-bottom-space')]/descendant::input")
 	@CacheLookup
 	public WebElement mobile;
 
-	@FindBy(xpath = "(//input[contains(@class,'oxd-input--active')])[9]")
+	@FindBy(xpath = "//label[.='Work']/ancestor::div[contains(@class,'input-field-bottom-space')]/descendant::input")
 	@CacheLookup
 	public WebElement work;
 
-	@FindBy(xpath = "(//input[contains(@class,'oxd-input--active')])[10]")
+	@FindBy(xpath = "//label[.='Work Email']/ancestor::div[contains(@class,'input-field-bottom-space')]/descendant::input")
 	@CacheLookup
 	public WebElement workEmail;
 
-	@FindBy(xpath = "(//input[contains(@class,'oxd-input--active')])[11]")
+	@FindBy(xpath = "//label[.='Other Email']/ancestor::div[contains(@class,'input-field-bottom-space')]/descendant::input")
 	@CacheLookup
 	public WebElement otherEmail;
 
-	@FindBy(css = "button[type='submit']")
+	@FindBy(css = "//h6[.='Contact Details']/parent::div//button")
 	@CacheLookup
-	public WebElement save;
+	public WebElement contactDetailsSave;
 
 	@FindBy(xpath = "//button[text()=' Add ']")
 	@CacheLookup
@@ -79,6 +79,18 @@ public class ContactDetailsObj extends BaseClass {
 	@FindBy(xpath = "//div[text()='Browse']")
 	@CacheLookup
 	public WebElement browse;
+	
+	@FindBy(xpath = "//textarea[@placeholder='Type comment here']")
+	@CacheLookup
+	public WebElement comment;
+	
+	@FindBy(xpath = "//h6[.='Add Attachment']/parent::div//button[contains(.,'Cancel')]")
+	@CacheLookup
+	public WebElement attachmentCancel;
+	
+	@FindBy(xpath = "//h6[.='Add Attachment']/parent::div//button[contains(.,'Save')]")
+	@CacheLookup
+	public WebElement attachmentSave;
 
 	public void setContactDetailsPage() {
 		contactDetailsPage.click();
@@ -112,8 +124,7 @@ public class ContactDetailsObj extends BaseClass {
 
 	public void setCountry(String countryName) {
 		country.click();
-		List<WebElement> options=driver.findElements(By.xpath("//div[@role='option']//span"));
-		BaseClass.selectValues(options, countryName);
+		BaseClass.selectValues(By.xpath("//div[@role='option']//span"), countryName);
 		Reporter.log("Country name is:"+countryName);
 	}
 
@@ -142,14 +153,35 @@ public class ContactDetailsObj extends BaseClass {
 		Reporter.log("Other email id is:"+otherEmail.getAttribute("value"));
 	}
 
-	public void setSave() throws Exception {
-		BaseClass.buttonFunctionality(save);
+	public void setContactDetailsSave() throws Exception {
+		BaseClass.buttonFunctionality(contactDetailsSave);
 		Reporter.log("Save button is clicked");
 	}
 
 	public void setAdd() throws Exception {
 		BaseClass.scrollToElement(add);
 		BaseClass.buttonFunctionality(add);
-		BaseClass.buttonFunctionality(browse);
 	}
+
+	public void setBrowse() throws Exception {
+	BaseClass.buttonFunctionality(browse);
+	
+	}
+
+	public void setComment(String txtComment) throws Exception {
+	BaseClass.textBoxFunctionality(comment, txtComment);
+	Reporter.log("Comment is:"+txtComment);
+	}
+
+	public void setAttachmentCancel() throws Exception {
+	BaseClass.buttonFunctionality(attachmentCancel);
+	
+	}
+
+	public void setAttachmentSave() throws Exception {
+	BaseClass.buttonFunctionality(attachmentSave);
+	
+	}
+	
+	
 }

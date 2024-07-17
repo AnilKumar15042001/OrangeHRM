@@ -1,10 +1,12 @@
 package pageObject;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Reporter;
 
 
 public class ImmigrationObj {
@@ -24,11 +26,11 @@ public class ImmigrationObj {
 	@CacheLookup
 	public WebElement immigrationPage;
 
-	@FindBy(xpath = "(//button[text()=' Add '])[1]")
+	@FindBy(xpath = "//h6[contains(.,'Immigration Records')]/parent::div//button[contains(.,'Add')]")
 	@CacheLookup
 	public WebElement immigrationAdd;
 
-	@FindBy(xpath = "(//button[text()=' Add '])[2]")
+	@FindBy(xpath = "//h6[contains(.,'Attachments')]/parent::div//button[contains(.,'Add')]")
 	@CacheLookup
 	public WebElement attachmentsAdd;
 
@@ -40,27 +42,27 @@ public class ImmigrationObj {
 	@CacheLookup
 	public WebElement visa;
 	
-	@FindBy(xpath = "(//div[@class='oxd-grid-item oxd-grid-item--gutters']/descendant::input)[3]")
+	@FindBy(xpath = "//label[contains(.,'Number')]/ancestor::div[contains(@class,'field-bottom-space')]/descendant::input")
 	@CacheLookup
 	public WebElement number;
 
-	@FindBy(xpath = "(//div[@class='oxd-date-wrapper']//i)[1]")
+	@FindBy(xpath = "//label[contains(.,'Issued Date')]/ancestor::div[contains(@class,'field-bottom-space')]/descendant::i")
 	@CacheLookup
 	public WebElement issuedDate;
 
-	@FindBy(xpath = "(//div[@class='oxd-date-wrapper']//i)[2]")
+	@FindBy(xpath = "//label[contains(.,'Expiry Date')]/ancestor::div[contains(@class,'field-bottom-space')]/descendant::i")
 	@CacheLookup
 	public WebElement expiryDate;
 
-	@FindBy(xpath = "(//div[@class='oxd-grid-item oxd-grid-item--gutters']/descendant::input)[6]")
+	@FindBy(xpath = "//label[contains(.,'Eligible Status')]/ancestor::div[contains(@class,'field-bottom-space')]/descendant::input")
 	@CacheLookup
 	public WebElement eligibleStatus;
 
-	@FindBy(xpath = "//div[@class='oxd-select-wrapper']//i")
+	@FindBy(xpath = "//label[contains(.,'Issued By')]/ancestor::div[contains(@class,'field-bottom-space')]/descendant::i")
 	@CacheLookup
 	public WebElement issuedBy;
 
-	@FindBy(xpath = "(//div[@class='oxd-date-wrapper']//i)[3]")
+	@FindBy(xpath = "//label[contains(.,'Eligible Review Date')]/ancestor::div[contains(@class,'field-bottom-space')]/descendant::i")
 	@CacheLookup
 	public WebElement eligibleReviewDate;
 
@@ -68,11 +70,11 @@ public class ImmigrationObj {
 	@CacheLookup
 	public WebElement immigrationTypeCommentsHere;
 
-	@FindBy(xpath = "(//button[text()=' Cancel '])[1]")
+	@FindBy(xpath = "//h6[contains(.,'Add Immigration')]/parent::div//button[contains(.,'Cancel')]")
 	@CacheLookup
 	public WebElement immigrationCancel;
 	
-	@FindBy(xpath = "(//button[@type='submit'])[1]")
+	@FindBy(xpath = "//h6[contains(.,'Add Immigration')]/parent::div//button[contains(.,'Save')]")
 	@CacheLookup
 	public WebElement immigrationSave;
 
@@ -84,11 +86,11 @@ public class ImmigrationObj {
 	@CacheLookup
 	public WebElement attachmentsTypeCommentHere;
 
-	@FindBy(xpath = "(//button[text()=' Cancel '])[2]")
+	@FindBy(xpath = "//h6[contains(.,'Add Attachment')]/parent::div//button[contains(.,'Cancel')]")
 	@CacheLookup
 	public WebElement attachmentsCancel;
 	
-	@FindBy(xpath = "(//button[@type='submit'])[2]")
+	@FindBy(xpath = "//h6[contains(.,'Add Attachment')]/parent::div//button[contains(.,'Save')]")
 	@CacheLookup
 	public WebElement attachmentsSave;
 
@@ -114,21 +116,25 @@ public class ImmigrationObj {
 
 	public void setNumber(String txtNumber) throws Exception {
 	BaseClass.textBoxFunctionality(number, txtNumber);
+	Reporter.log("Number is:"+txtNumber);
 	}
 
 	public void setIssuedDate(String year,String month,String date) throws Exception {
 	BaseClass.buttonFunctionality(issuedDate);
-	BaseClass.dateOrCalenderControl(year, month, date, yearXpath, monthXpath, dateXpath, listXpath);
+	BaseClass.dateOrCalenderControl(year, month, date, yearXpath, monthXpath, By.xpath(dateXpath), By.xpath(listXpath));
+	Reporter.log("Issued date is:"+year+month+date);
 	}
 
 	public void setExpiryDate(String year, String month, String date) throws Exception {
-	Thread.sleep(3000);
+	Thread.sleep(2000);
 	BaseClass.buttonFunctionality(expiryDate);
-	BaseClass.dateOrCalenderControl(year, month, date, yearXpath, monthXpath, dateXpath, listXpath);
+	BaseClass.dateOrCalenderControl(year, month, date, yearXpath, monthXpath, By.xpath(dateXpath), By.xpath(listXpath));
+	Reporter.log("Expiry date is:"+year+month+date);
 	}
 
 	public void setEligibleStatus(String txtEligibleStatus) throws Exception {
 	BaseClass.textBoxFunctionality(eligibleStatus, txtEligibleStatus);
+	Reporter.log("EligibleStatus"+txtEligibleStatus);
 	}
 
 	public void setIssuedBy() throws Exception {
@@ -136,9 +142,10 @@ public class ImmigrationObj {
 	}
 
 	public void setEligibleReviewDate(String year, String month, String date) throws Exception {
-	Thread.sleep(3000);
+	Thread.sleep(2000);
 	BaseClass.buttonFunctionality(eligibleReviewDate);
-	BaseClass.dateOrCalenderControl(year, month, date, yearXpath, monthXpath, dateXpath, listXpath);
+	BaseClass.dateOrCalenderControl(year, month, date, yearXpath, monthXpath, By.xpath(dateXpath), By.xpath(listXpath));
+	Reporter.log("Eligible Review Date is:"+year+month+date);
 	}
 
 	public void setImmigrationTypeCommentsHere(String txtImmigrationTypeCommentsHere) throws Exception {
@@ -159,13 +166,14 @@ public class ImmigrationObj {
 
 	public void setAttachmentsTypeCommentHere(String txtAttachmentsTypeCommentHere) throws Exception {
 	BaseClass.textBoxFunctionality(attachmentsTypeCommentHere, txtAttachmentsTypeCommentHere);
+	Reporter.log("Comment is:"+txtAttachmentsTypeCommentHere);
 	}
 
-	public void setAttachmentsCancel(WebElement attachmentsCancel) throws Exception {
+	public void setAttachmentsCancel() throws Exception {
 	BaseClass.buttonFunctionality(attachmentsCancel);
 	}
 
-	public void setAttachmentsSave(WebElement attachmentsSave) throws Exception {
+	public void setAttachmentsSave() throws Exception {
 	BaseClass.buttonFunctionality(attachmentsSave);
 	}
 	

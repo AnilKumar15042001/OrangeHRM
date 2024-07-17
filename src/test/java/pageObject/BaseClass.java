@@ -70,25 +70,27 @@ public class BaseClass {
 	public static JobObj job;
 
 //open application
-	public static void openApplication(String browser) throws Exception {
+	public static void openBrowser(String browser) throws Exception {
 		if (browser.equalsIgnoreCase("chrome")) {
 			driver = new ChromeDriver();
 			driver.manage().window().maximize();
-			driver.navigate().to("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
 			Reporter.log("Chrome browser opened");
 		} else if (browser.equalsIgnoreCase("firefox")) {
 			driver = new FirefoxDriver();
 			driver.manage().window().maximize();
-			driver.navigate().to("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
 			Reporter.log("Firefox browser opened");
 		} else if (browser.equalsIgnoreCase("edge")) {
 			driver = new EdgeDriver();
 			driver.manage().window().maximize();
-			driver.navigate().to("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
 			Reporter.log("Edge browser opened");
 		} else {
 			throw new Exception("Browser not support");
 		}
+	}
+	
+	public static void enterUrl(String url)
+	{
+		driver.navigate().to(url);
 	}
 
 //close application
@@ -146,9 +148,11 @@ public class BaseClass {
 		}
 	}
 
-	public static void selectValues(List<WebElement> options, String value) {
+	public static void selectValues(By by, String value) {
+		
+		List<WebElement> options=driver.findElements(by);
 		for (WebElement option : options) {
-			if (option.getText().equalsIgnoreCase(value)) {
+			if (option.getText().equalsIgnoreCase(value) && option.getText().contains(value)) {
 				option.click();
 				break;
 			}
@@ -257,19 +261,16 @@ public class BaseClass {
 		}
 	}
 	
-	public static void dateOrCalenderControl(String year,String month,String date,String yearXpath,String monthXpath,String dateXpath,String listXpath) throws InterruptedException
+	public static void dateOrCalenderControl(String year,String month,String date,String yearXpath,String monthXpath,By dateTag,By listTag) throws InterruptedException
 	{
 		Thread.sleep(3000);
 		driver.findElement(By.xpath(yearXpath)).click();
-		List<WebElement> years=driver.findElements(By.xpath(listXpath));
-		selectValues(years,year);
+		selectValues(listTag,year);
 		Thread.sleep(3000);
 		driver.findElement(By.xpath(monthXpath)).click();
-		List<WebElement> months=driver.findElements(By.xpath(listXpath));
-		selectValues(months,month);
+		selectValues(listTag,month);
 		Thread.sleep(3000);
-		List<WebElement> dates=driver.findElements(By.xpath(dateXpath));
-		selectValues(dates,date);
+		selectValues(dateTag,date);
 	}
 	
 	public static void selectFutureDate(String day,String month,String year,String yearXpath,String monthXpath,String nextButtonXpath,String listXpath)
@@ -335,7 +336,7 @@ public class BaseClass {
 			List<WebElement> tableData=driver.findElements(By.xpath(tableDataXpath));
 			for(WebElement data:tableData)
 			{
-				System.out.print(data.getText()+"\b");
+				System.out.print(data.getText()+"\t");
 			}
 			System.out.println();
 			if(driver.findElement(By.xpath(nextPageButtonXpath)).isDisplayed() && !stop)
@@ -461,19 +462,17 @@ public class BaseClass {
 			}
 	}
 	
-	public static void ascending(WebElement ascending) throws Exception
+	public static void ascending(WebElement element,WebElement ascending) throws Exception
 	{
-		explicityWait(ascending);
+		explicityWait(element);
+		buttonFunctionality(element);
 		buttonFunctionality(ascending);
-		WebElement asc=driver.findElement(By.xpath("//div[contains(@class,'active oxd-table')]//span[contains(.,'Ascending')]"));
-		buttonFunctionality(asc);
 	}
-	public static void descending(WebElement descending) throws Exception
+	public static void descending(WebElement element,WebElement descending) throws Exception
 	{
-		explicityWait(descending);
+		explicityWait(element);
+		buttonFunctionality(element);
 		buttonFunctionality(descending);
-		WebElement asc=driver.findElement(By.xpath("//div[contains(@class,'active oxd-table')]//span[contains(.,'Descending')]"));
-		buttonFunctionality(asc);
 	}
 	
 	public static void retrieveAllInnerText(By by)

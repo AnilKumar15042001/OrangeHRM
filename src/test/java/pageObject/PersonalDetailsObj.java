@@ -19,63 +19,63 @@ public class PersonalDetailsObj extends BaseClass {
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(xpath = "(//div[contains(@class,'oxd-input-field-bottom-space')]/descendant::input)[1]")
+	@FindBy(xpath = "//input[@placeholder='First Name']")
 	@CacheLookup
 	public WebElement firstName;
 
-	@FindBy(xpath = "(//div[contains(@class,'oxd-input-field-bottom-space')]/descendant::input)[2]")
+	@FindBy(xpath = "//input[@placeholder='Middle Name']")
 	@CacheLookup
 	public WebElement middleName;
 
-	@FindBy(xpath = "(//div[contains(@class,'oxd-input-field-bottom-space')]/descendant::input)[3]")
+	@FindBy(xpath = "//input[@placeholder='Last Name']")
 	@CacheLookup
 	public WebElement lastName;
 
-	@FindBy(xpath = "(//div[contains(@class,'oxd-input-field-bottom-space')]/descendant::input)[4]")
+	@FindBy(xpath = "//label[.='Employee Id']/ancestor::div[contains(@class,'input-field-bottom-space')]/descendant::input")
 	@CacheLookup
 	public WebElement employeeId;
 
-	@FindBy(xpath = "(//div[contains(@class,'oxd-input-field-bottom-space')]/descendant::input)[5]")
+	@FindBy(xpath = "//label[.='Other Id']/ancestor::div[contains(@class,'input-field-bottom-space')]/descendant::input")
 	@CacheLookup
 	public WebElement otherId;
 
-	@FindBy(xpath = "(//div[contains(@class,'oxd-input-field-bottom-space')]/descendant::input)[6]")
+	@FindBy(xpath = "//label[contains(.,'License Number')]/ancestor::div[contains(@class,'input-field-bottom-space')]/descendant::input")
 	@CacheLookup
 	public WebElement driversLicenseNumber;
 
-	@FindBy(xpath = "(//div[@class='oxd-select-text--after'])[1]")
+	@FindBy(xpath = "//label[.='Nationality']/ancestor::div[contains(@class,'input-field-bottom-space')]/descendant::i")
 	@CacheLookup
 	public WebElement nationality;
 
-	@FindBy(xpath = "(//div[@class='oxd-select-text--after'])[2]")
+	@FindBy(xpath = "//label[.='Marital Status']/ancestor::div[contains(@class,'input-field-bottom-space')]/descendant::i")
 	@CacheLookup
 	public WebElement maritalStatus;
 
-	@FindBy(xpath = "(//div[@class='oxd-select-text--after'])[3]")
+	@FindBy(xpath = "//label[.='Blood Type']/ancestor::div[contains(@class,'input-field-bottom-space')]/descendant::i")
 	@CacheLookup
 	public WebElement bloodType;
 
-	@FindBy(xpath = "(//div[@class='oxd-radio-wrapper']//span)[1]")
+	@FindBy(xpath = "//label[.='Male']//span")
 	@CacheLookup
 	public WebElement male;
 
-	@FindBy(xpath = "(//div[@class='oxd-radio-wrapper']//span)[2]")
+	@FindBy(xpath = "//label[.='Female']//span")
 	@CacheLookup
 	public WebElement female;
 
-	@FindBy(xpath = "(//button[@type='submit'])[1]")
+	@FindBy(xpath = "//h6[.='Personal Details']/parent::div//button")
 	@CacheLookup
 	public WebElement personalDetailsSaveButton;
 	
-	@FindBy(xpath = "(//div[@class='oxd-date-wrapper']/descendant::i)[2]")
+	@FindBy(xpath = "//label[.='Date of Birth']/ancestor::div[contains(@class,'field-bottom-space')]/descendant::i")
 	@CacheLookup
 	public WebElement dateOfBirth;
 	
-	@FindBy(xpath = "//div[2]/div[1]/div[2]/div[1]/div[1]/i[1]")
+	@FindBy(xpath = "//label[contains(.,'License Expiry Date')]/ancestor::div[contains(@class,'field-bottom-space')]/descendant::i")
 	@CacheLookup
 	public WebElement licenseExpiryDate;
 	
-	@FindBy(xpath = "(//div[contains(@class,'oxd-input-field-bottom-space')]/descendant::input)[11]")
+	@FindBy(xpath = "//label[contains(.,'Test_Field')]/ancestor::div[contains(@class,'input-field-bottom-space')]/descendant::input")
 	@CacheLookup
 	public WebElement testField;
 	
@@ -83,15 +83,15 @@ public class PersonalDetailsObj extends BaseClass {
 	@CacheLookup
 	public WebElement addButton;
 	
-	@FindBy(xpath = "(//button[@type='submit'])[2]")
+	@FindBy(xpath = "//h6[.='Custom Fields']/parent::div//button")
 	@CacheLookup
 	public WebElement customFieldsSaveButton;
 	
-	@FindBy(xpath = "(//button[@type='submit'])[3]")
+	@FindBy(xpath = "//h6[.='Add Attachment']/parent::div//button[@type='submit']")
 	@CacheLookup
 	public WebElement addAttachmentSaveButton;
 	
-	@FindBy(xpath = "//button[text()=' Cancel ']")
+	@FindBy(xpath = "//h6[.='Add Attachment']/parent::div//button[contains(.,'Cancel')]")
 	@CacheLookup
 	public WebElement addAttachmentCancelButton;
 	
@@ -132,24 +132,21 @@ public class PersonalDetailsObj extends BaseClass {
 		BaseClass.explicityWait(nationality);
 		BaseClass.scrollToElement(nationality);
 		nationality.click();
-		List<WebElement> options = driver.findElements(By.xpath("//div[@class='oxd-select-option']//span"));
-		BaseClass.selectValues(options, national);
+		BaseClass.selectValues(By.xpath("//div[@class='oxd-select-option']//span"), national);
 	}
 
 	public void setMaritalStatus(String maritalStus) {
 		BaseClass.scrollToElement(maritalStatus);
 		BaseClass.explicityWait(maritalStatus);
 		maritalStatus.click();
-		List<WebElement> options = driver.findElements(By.xpath("//div[@role='listbox']//span"));
-		BaseClass.selectValues(options, maritalStus);
+		BaseClass.selectValues(By.xpath("//div[@role='listbox']//span"), maritalStus);
 	}
 
 	public void setBloodType(String bloodGroup) {
 		BaseClass.explicityWait(bloodType);
 		BaseClass.scrollToElement(bloodType);
 		bloodType.click();
-		List<WebElement> options = driver.findElements(By.xpath("//div[@role='option']//span"));
-		BaseClass.selectValues(options, bloodGroup);
+		BaseClass.selectValues(By.xpath("//div[@role='option']//span"), bloodGroup);
 	}
 
 	public void setMale() throws Exception {
@@ -172,7 +169,7 @@ public class PersonalDetailsObj extends BaseClass {
 		String listXpath="//ul[@role='menu']//li";
 		dateOfBirth.click();
 		Thread.sleep(3000);
-		BaseClass.dateOrCalenderControl(year, month, date, yearXpath, monthXpath, dateXpath, listXpath);
+		BaseClass.dateOrCalenderControl(year, month, date, yearXpath, monthXpath, By.xpath(dateXpath), By.xpath(listXpath));
 	}
 	
 	public void licenseExpiryDate(String year,String month,String date) throws InterruptedException
@@ -183,7 +180,7 @@ public class PersonalDetailsObj extends BaseClass {
 		String listValue="//ul[@role='menu']/li";
 		licenseExpiryDate.click();
 		Thread.sleep(3000);
-		BaseClass.dateOrCalenderControl(year,month,date,yearXpath,monthXpath,dateXpath,listValue);
+		BaseClass.dateOrCalenderControl(year,month,date,yearXpath,monthXpath,By.xpath(dateXpath), By.xpath(listValue));
 	}
 
 	public void setTestField(String tstField) throws Exception {

@@ -1,12 +1,8 @@
 Feature: Add Employee
 
   Background: 
-    Given user launch the chrome browser
-    When user enter url "http://example.com"
-    And user enter username as "admin"
-    And user enter password as "password123"
-    And click on OrangeHrm login button
-    Then page title should be displayed as "OrangeHRM"
+    Given The user enter url as "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
+    And The user is logged in with valid username as "Admin" and password as "admin123"
 
   Scenario Outline: Add a new employee
     When user click on PIM module

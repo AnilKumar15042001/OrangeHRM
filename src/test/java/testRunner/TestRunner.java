@@ -8,10 +8,10 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 		
-		features="",
-		glue="",
-		dryRun=false
-		
+		features="src/test/resources/Features/LoginPage.feature",
+		glue="stepDefinition",
+		dryRun=false,
+		plugin={"pretty","html:target/html-report.html"}
 		)
 public class TestRunner {
 

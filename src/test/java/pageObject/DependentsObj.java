@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Reporter;
 
 public class DependentsObj extends BaseClass {
 
@@ -22,15 +23,15 @@ public class DependentsObj extends BaseClass {
 	@CacheLookup
 	public WebElement dependentsPage;
 
-	@FindBy(xpath = "(//button[contains(.,'Add')])[1]")
+	@FindBy(xpath = "//h6[contains(.,'Dependents')]/parent::div//button[contains(.,'Add')]")
 	@CacheLookup
 	public WebElement dependentAdd;
 	
-	@FindBy(xpath = "(//button[contains(.,'Add')])[2]")
+	@FindBy(xpath = "//h6[contains(.,'Attachments')]/parent::div//button[contains(.,'Add')]")
 	@CacheLookup
 	public WebElement attachmentAdd;
 	
-	@FindBy(xpath = "(//div[@class='oxd-form-row'][1]/descendant::input)[1]")
+	@FindBy(xpath = "//label[contains(.,'Name')]/ancestor::div[contains(@class,'field-bottom-space')]/descendant::input")
 	@CacheLookup
 	public WebElement name;
 	
@@ -42,11 +43,11 @@ public class DependentsObj extends BaseClass {
 	@CacheLookup
 	public WebElement dateOfBirth;
 
-	@FindBy(xpath = "(//button[contains(.,'Cancel')])[1]")
+	@FindBy(xpath = "//h6[contains(.,'Add Dependent')]/parent::div//button[contains(.,'Cancel')]")
 	@CacheLookup
 	public WebElement dependentCancel;
 
-	@FindBy(xpath = "(//button[contains(.,'Save')])[1]")
+	@FindBy(xpath = "//h6[contains(.,'Add Dependent')]/parent::div//button[contains(.,'Save')]")
 	@CacheLookup
 	public WebElement dependentSave;
 
@@ -58,11 +59,11 @@ public class DependentsObj extends BaseClass {
 	@CacheLookup
 	public WebElement typeCommentHere;
 
-	@FindBy(xpath = "(//button[contains(.,'Cancel')])[2]")
+	@FindBy(xpath = "//h6[contains(.,'Add Attachment')]/parent::div//button[contains(.,'Cancel')]")
 	@CacheLookup
 	public WebElement attachmentCancel;
 
-	@FindBy(xpath = "(//button[contains(.,'Save')])[2]")
+	@FindBy(xpath = "//h6[contains(.,'Add Attachment')]/parent::div//button[contains(.,'Save')]")
 	@CacheLookup
 	public WebElement attachmentSave;
 
@@ -80,12 +81,13 @@ public class DependentsObj extends BaseClass {
 
 	public void setName(String txtName) throws Exception {
 	BaseClass.textBoxFunctionality(name, txtName);
+	Reporter.log("Name is:"+txtName);
 	}
 
 	public void setRelationship(String txtRelationship) throws Exception {
 	BaseClass.buttonFunctionality(relationship);
-	List<WebElement> options=driver.findElements(By.xpath("//div[@role='listbox']/descendant::span"));
-	BaseClass.selectValues(options, txtRelationship);
+	BaseClass.selectValues(By.xpath("//div[@role='listbox']/descendant::span"), txtRelationship);
+	Reporter.log("Relationship is:"+txtRelationship);
 	}
 
 	public void setDateOfBirth(String year,String month,String date) throws Exception {
@@ -94,7 +96,8 @@ public class DependentsObj extends BaseClass {
 	String yearXpath="//ul[@class='oxd-calendar-selector']/child::li[2]//i";
 	String dateXpath="//div[@class='oxd-calendar-dates-grid']/div/div";
 	String listXpath="//ul[@role='menu']//li";
-	BaseClass.dateOrCalenderControl(year, month, date, yearXpath, monthXpath, dateXpath, listXpath);
+	BaseClass.dateOrCalenderControl(year, month, date, yearXpath, monthXpath, By.xpath(dateXpath), By.xpath(listXpath));
+	Reporter.log("Date of birth is:"+year+month+date);
 	}
 
 	public void setDependentCancel() throws Exception {
@@ -111,6 +114,7 @@ public class DependentsObj extends BaseClass {
 
 	public void setTypeCommentHere(String txtTypeCommentHere) throws Exception {
 	BaseClass.textBoxFunctionality(typeCommentHere, txtTypeCommentHere);
+	Reporter.log("Comment is:"+txtTypeCommentHere);
 	}
 
 	public void setAttachmentCancel() throws Exception {

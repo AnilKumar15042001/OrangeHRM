@@ -65,52 +65,48 @@ public class EmployeeListObj extends BaseClass{
 		//System.out.println(optionss.size());
 		Thread.sleep(3000);
 		try
-		{List<WebElement> options=driver.findElements(By.tagName("div"));
-		  BaseClass.selectValues(options, empstatus);
+		{
+		  BaseClass.selectValues(By.tagName("div"), empstatus);
 		}
 		catch(StaleElementReferenceException e)
 		{
-			List<WebElement> options=driver.findElements(By.tagName("div"));
-			BaseClass.selectValues(options, empstatus);
+			BaseClass.selectValues(By.tagName("div"), empstatus);
 			
 		}
 	}
 	public static void setInclude_dd(String include) {
 		driver.findElement(include_dd).click();
 		try
-		{List<WebElement> options=driver.findElements(By.tagName("div"));
-		  BaseClass.selectValues(options, include);
+		{
+		  BaseClass.selectValues(By.tagName("div"), include);
 		}
 		catch(StaleElementReferenceException e)
 		{
-			List<WebElement> options=driver.findElements(By.tagName("div"));
-			BaseClass.selectValues(options, include);
+			BaseClass.selectValues(By.tagName("div"), include);
 			
 		}
 	}
 	public static void setJobtitle_dd(String jobtitle) {
 		driver.findElement(jobtitle_dd).click();
 		try
-		{List<WebElement> options=driver.findElements(By.tagName("div"));
-		  BaseClass.selectValues(options, jobtitle);
+		{
+		  BaseClass.selectValues(By.tagName("div"), jobtitle);
 		}
 		catch(StaleElementReferenceException e)
 		{
-			List<WebElement> options=driver.findElements(By.tagName("div"));
-			BaseClass.selectValues(options, jobtitle);
+			BaseClass.selectValues(By.tagName("div"), jobtitle);
 			
 		}
 	}
 	public static void setSubunit_dd(String subunit) {
 		driver.findElement(subunit_dd).click();
 		try
-		{List<WebElement> options=driver.findElements(By.tagName("div"));
-		  BaseClass.selectValues(options, subunit);
+		{
+		  BaseClass.selectValues(By.tagName("div"), subunit);
 		}
 		catch(StaleElementReferenceException e)
 		{
-			List<WebElement> options=driver.findElements(By.tagName("div"));
-			BaseClass.selectValues(options, subunit);
+			BaseClass.selectValues(By.tagName("div"), subunit);
 			
 		}
 	}
@@ -141,16 +137,17 @@ public class EmployeeListObj extends BaseClass{
 	
 	public static void sortTheTableDataInAscendingOrder(String colName) throws Exception
 	{
-		WebElement ascending=driver.findElement(By.xpath("(//div[@role='columnheader'][text()='"+colName+"']//i)[1]"));
-		BaseClass.ascending(ascending);
+		WebElement element=driver.findElement(By.xpath("(//div[@role='columnheader'][text()='"+colName+"']//i)[1]"));
+		WebElement ascending=driver.findElement(By.xpath("//div[contains(@class,'active oxd-table')]//span[contains(.,'Ascending')]"));
+		BaseClass.ascending(element,ascending);
 		Reporter.log("Sorting is success");
 	}
 	public static void sortTheTableDataInDescendingOrder(String colName) throws Exception
 	{
-		WebElement descending=driver.findElement(By.xpath("(//div[@role='columnheader'][text()='"+colName+"']//i)[1]"));
-		BaseClass.descending(descending);
+		WebElement descending =driver.findElement(By.xpath("//div[contains(@class,'active oxd-table')]//span[contains(.,'Descending')]"));
+		WebElement element=driver.findElement(By.xpath("(//div[@role='columnheader'][text()='"+colName+"']//i)[1]"));
+		BaseClass.descending(element,descending);
 		Reporter.log("Sorting is success");
 	}
-	
 	
 }
