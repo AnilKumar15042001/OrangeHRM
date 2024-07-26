@@ -14,9 +14,12 @@ import javax.imageio.ImageIO;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,7 +27,9 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
@@ -109,12 +114,29 @@ public class BaseClass {
 	}
 
 	public static void implicitlyWait() {
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	}
 
-	public static void explicityWait(WebElement element) {
-		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.visibilityOf(element));
+	public static WebElement waitForElementIsPresent(WebDriver driver,By locator,int timeout)
+	{
+		wait=new WebDriverWait(driver, Duration.ofSeconds(timeout));
+		wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+		return driver.findElement(locator);
+	}
+	public static void explicityWaitForElementClickable(WebDriver driver,WebElement element,int timeout) {
+		wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+		wait.ignoring(StaleElementReferenceException.class)
+		.until(ExpectedConditions.elementToBeClickable(element));
+		
+	}
+	public static WebElement waitForElementWithFluentWait(WebDriver driver,By locator)
+	{
+		  Wait<WebDriver> wait =new FluentWait<>(driver)
+				  .withTimeout(Duration.ofSeconds(30))
+				  .pollingEvery(Duration.ofSeconds(5))
+				  .ignoring(NoSuchElementException.class, ElementNotInteractableException.class);
+		  WebElement element=wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+		  return driver.findElement(locator);
 	}
 
 	public static boolean isAlertPresent() {
@@ -159,27 +181,42 @@ public class BaseClass {
 		}
 	}
 	
-	public static void selectAllCheckBox(WebElement element) throws Exception
+	public static void selectCheckBox(WebDriver driver,By listOfCheckBoxXpath,By allCheckBoxXpath,String checkBoxXpath,String...values) throws Exception
 	{
-		if(element.isEnabled() && element.isDisplayed())
+		//div[@role='rowgroup'][2]/div/div/div[2]
+		List<WebElement> elements=driver.findElements(listOfCheckBoxXpath);
+		if(!values[0].equalsIgnoreCase("all"))
 		{
-			element.click();
+			for(WebElement element:elements)
+			{
+				String text=element.getText();
+				for(String value:values)
+				{
+					if(text.equals(value))
+					{
+						System.out.println(text);
+						//div[@role='row']//div[contains(text(),'"+text+"')]/parent::div[@role='cell']/parent::div//span
+						driver.findElement(By.xpath(String.format(checkBoxXpath, text))).click();
+						break;
+					}
+				}
+			}
 		}
 		else
 		{
-			throw new Exception("Invalid element");
-		}
-	}
-	
-	public static void selectOneCheckBox(WebElement element) throws Exception
-	{
-		if(element.isEnabled() && element.isDisplayed())
-		{
-			element.click();
-		}
-		else
-		{
-			throw new Exception("Invalid element");
+			if(isElementPresent(allCheckBoxXpath))
+			{
+				driver.findElement(allCheckBoxXpath).click();
+			}
+			else
+			{
+				for(WebElement element:elements)
+    			{
+    				Thread.sleep(2000);
+    				String text=element.getText();
+    				driver.findElement(By.xpath(String.format(checkBoxXpath, text))).click();
+    			}
+			}
 		}
 	}
 
@@ -361,7 +398,7 @@ public class BaseClass {
 	
 	public static void buttonFunctionality(WebElement button) throws Exception
 	{
-		explicityWait(button);
+		explicityWaitForElementClickable(driver,button,10);
 		if(button.isDisplayed() && button.isEnabled())
 		{
 			button.click();
@@ -374,7 +411,7 @@ public class BaseClass {
 	
 	public static void radioButtonFunctionality(WebElement radioButton) throws Exception
 	{
-		explicityWait(radioButton);
+		explicityWaitForElementClickable(driver,radioButton,10);
 		if(radioButton.isDisplayed() && radioButton.isEnabled() && !radioButton.isSelected())
 		{
 			radioButton.click();
@@ -405,11 +442,22 @@ public class BaseClass {
 		}
 	}
 	
-	public static void scrollToElement(WebElement element)
+	public static void scrollToBottomElement(WebElement element)
 	{
 		js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].scrollIntoView();", element);
-//		js.executeScript("window.scrollBy(0,-1000);");
+		js.executeScript("arguments[0].scrollIntoView(true);", element);
+	}
+	
+	public static void scrollToUpElement(WebElement element)
+	{
+		js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(false);", element);
+	}
+	
+	public static void scrollToUp()
+	{
+		js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,-500);");
 	}
 	
 	public static void compressedFile(String sourceFile,String outputFile) throws IOException
@@ -419,19 +467,20 @@ public class BaseClass {
 		optimizer.optimize(image,new File(outputFile).getPath(),true,9);
 	}
 	
-	public static void findElementInPegenation(String nameOrId,String pegenationXpath,String elementXpath,String buttonXpath, String nextPageButtonXpath) {
-	    int rows = driver.findElements(By.xpath(pegenationXpath)).size();
+	public static void findElementInPegenation(String empDetails,String rowXpath,String colXpath,String elementXpath,String buttonXpath, String nextPegiButtonXpath) {
+	    int rows = driver.findElements(By.xpath(rowXpath)).size();
+	    int cols = driver.findElements(By.xpath(colXpath)).size();
 	    boolean stop=false;
 	    	while(!stop)
 			{
 	    		for(int i=1;i<=rows && !stop;i++)
 			    {
-			    	for(int j=2;j<=4;j++)
+			    	for(int j=2;j<cols;j++)
 			    	{
 			    		String dynamicElementXpath = String.format(elementXpath, i, j);
 			    		wait=new WebDriverWait(driver, Duration.ofSeconds(10));
 			    		WebElement element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(dynamicElementXpath)));
-			    		if(element.getText().trim().equalsIgnoreCase(nameOrId))
+			    		if(element.getText().trim().equalsIgnoreCase(empDetails))
 			    		{
 			    			System.out.println(element.getText());
 			    			String dynamicButtonXpath = String.format(buttonXpath, i);
@@ -446,12 +495,12 @@ public class BaseClass {
 				{
 					try
 					{
-						driver.findElement(By.xpath(nextPageButtonXpath)).click();
+						driver.findElement(By.xpath(nextPegiButtonXpath)).click();
 					}
 					catch(Exception e)
 					{
 						System.out.println(e.getMessage());
-						driver.findElement(By.xpath(nextPageButtonXpath)).click();
+						driver.findElement(By.xpath(nextPegiButtonXpath)).click();
 					}
 				}
 				else
@@ -464,13 +513,13 @@ public class BaseClass {
 	
 	public static void ascending(WebElement element,WebElement ascending) throws Exception
 	{
-		explicityWait(element);
+		explicityWaitForElementClickable(driver,element,10);
 		buttonFunctionality(element);
 		buttonFunctionality(ascending);
 	}
 	public static void descending(WebElement element,WebElement descending) throws Exception
 	{
-		explicityWait(element);
+		explicityWaitForElementClickable(driver,element,10);
 		buttonFunctionality(element);
 		buttonFunctionality(descending);
 	}
@@ -485,11 +534,64 @@ public class BaseClass {
 			Reporter.log(innerText);
 		}
 	}
-	public static String retrieveElementInnerText(By by)
+	public static String retrieveElementInnerText(By by) throws Exception
 	{
 		WebElement element = driver.findElement(by);
+		Thread.sleep(2000);
 		js = (JavascriptExecutor) driver;
 		String innerText = (String) js.executeScript("return arguments[0].innerText;", element);
+		Reporter.log(innerText);
 		return innerText;
+	}
+	
+	public static void heading(By by, String heading)
+	{
+		List<WebElement> elements=driver.findElements(by);
+		js=(JavascriptExecutor) driver;
+		for(WebElement element:elements)
+		{
+			String innerText=(String) js.executeScript("return arguments[0].innerText;", element);
+			if(innerText.trim().equals(heading))
+			{
+				Reporter.log("Page heading is displayed as:"+innerText);
+				break;
+			}
+		}
+	}
+	
+	public static void autoSuggestDropDown(By inputBox,By listItem,String...value)
+	{
+		driver.findElement(inputBox).sendKeys(value[0]);
+		List<WebElement> options=driver.findElements(listItem);
+		for(WebElement option:options)
+		{
+			if(option.getText().contains(value[1]))
+			{
+				option.click();
+				break;
+			}
+		}
+	}
+	
+	public static void autoCompleteGooglePlacesDropdown(By dropdown,String... string) throws Exception
+	{
+		WebElement dropdownBox=driver.findElement(dropdown);
+		Thread.sleep(2000);
+		dropdownBox.clear();
+		dropdownBox.sendKeys(string[0]);
+		Thread.sleep(2000);
+		String text;
+		do
+		{
+			dropdownBox.sendKeys(Keys.ARROW_DOWN);
+			Thread.sleep(2000);
+			text=dropdownBox.getAttribute("value");
+			if(text.equals(string[1]))
+			{
+				dropdownBox.sendKeys(Keys.ENTER);
+				break;
+			}
+			Thread.sleep(2000);
+		}while(!text.isEmpty());
 	}
 }

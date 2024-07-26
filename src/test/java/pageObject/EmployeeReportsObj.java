@@ -112,8 +112,8 @@ public class EmployeeReportsObj extends BaseClass{
 			if(row!=0 && row!=-1)
 			{
 				System.out.println(row);
-				BaseClass.explicityWait(driver.findElement(By.xpath("//div[@class='orangehrm-container']/div/div[2]/div["+row+"]/div/div[1]/div/div/label/span")));
-				driver.findElement(By.xpath("//div[@class='orangehrm-container']/div/div[2]/div["+row+"]/div/div[1]/div/div/label/span")).click();
+				WebElement checkBox=BaseClass.waitForElementIsPresent(driver,By.xpath("//div[@class='orangehrm-container']/div/div[2]/div["+row+"]/div/div[1]/div/div/label/span"),10);
+				checkBox.click();
 			}
 			
 		}

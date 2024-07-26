@@ -8,7 +8,7 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 		
-		features="src/test/resources/Features/LoginPage.feature",
+		features="src/test/resources/Features/AddEmployeePage.feature",
 		glue="stepDefinition",
 		dryRun=false,
 		plugin={"pretty","html:target/html-report.html"}

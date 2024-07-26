@@ -129,61 +129,68 @@ public class PersonalDetailsObj extends BaseClass {
 	}
 
 	public void setNationality(String national) throws Exception {
-		BaseClass.explicityWait(nationality);
-		BaseClass.scrollToElement(nationality);
+		BaseClass.scrollToUpElement(nationality);
+		BaseClass.explicityWaitForElementClickable(driver,nationality,10);
 		nationality.click();
 		BaseClass.selectValues(By.xpath("//div[@class='oxd-select-option']//span"), national);
 	}
 
 	public void setMaritalStatus(String maritalStus) {
-		BaseClass.scrollToElement(maritalStatus);
-		BaseClass.explicityWait(maritalStatus);
+		BaseClass.scrollToUpElement(maritalStatus);
+		BaseClass.explicityWaitForElementClickable(driver,maritalStatus,10);
 		maritalStatus.click();
 		BaseClass.selectValues(By.xpath("//div[@role='listbox']//span"), maritalStus);
 	}
 
 	public void setBloodType(String bloodGroup) {
-		BaseClass.explicityWait(bloodType);
-		BaseClass.scrollToElement(bloodType);
+		BaseClass.scrollToBottomElement(bloodType);
+		BaseClass.explicityWaitForElementClickable(driver,bloodType,10);
 		bloodType.click();
 		BaseClass.selectValues(By.xpath("//div[@role='option']//span"), bloodGroup);
 	}
 
 	public void setMale() throws Exception {
+		BaseClass.scrollToUpElement(male);
 		BaseClass.radioButtonFunctionality(male);
 	}
 
 	public void setFemale() throws Exception {
+		BaseClass.scrollToUpElement(female);
 		BaseClass.radioButtonFunctionality(female);
 	}
 
 	public void setPersonalDetailsSaveButton() throws Exception {
+//		Thread.sleep(3000);
+		BaseClass.scrollToBottomElement(personalDetailsSaveButton);
+		BaseClass.scrollToUp();
 		BaseClass.buttonFunctionality(personalDetailsSaveButton);
 	}
 	
 	public void setDateOfBirth(String year,String month,String date) throws Exception
 	{
+		BaseClass.scrollToUp();
 		String yearXpath="//ul[@class='oxd-calendar-selector']/child::li[2]/descendant::i";
 		String monthXpath="//ul[@class='oxd-calendar-selector']/child::li[1]/descendant::i";
 		String dateXpath="//div[@class='oxd-calendar-dates-grid']//div//div";
 		String listXpath="//ul[@role='menu']//li";
 		dateOfBirth.click();
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		BaseClass.dateOrCalenderControl(year, month, date, yearXpath, monthXpath, By.xpath(dateXpath), By.xpath(listXpath));
 	}
 	
-	public void licenseExpiryDate(String year,String month,String date) throws InterruptedException
+	public void setLicenseExpiryDate(String year,String month,String date) throws InterruptedException
 	{
 		String yearXpath="//li[@class='oxd-calendar-selector-year']//i";
 		String monthXpath="//li[@class='oxd-calendar-selector-month']//i";
 		String dateXpath="//div[@class='oxd-calendar-dates-grid']/div/div";
 		String listValue="//ul[@role='menu']/li";
 		licenseExpiryDate.click();
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		BaseClass.dateOrCalenderControl(year,month,date,yearXpath,monthXpath,By.xpath(dateXpath), By.xpath(listValue));
 	}
 
 	public void setTestField(String tstField) throws Exception {
+//		BaseClass.scrollToBottomElement(testField);
 		BaseClass.textBoxFunctionality(testField, tstField);
 	}
 
@@ -207,9 +214,12 @@ public class PersonalDetailsObj extends BaseClass {
 		BaseClass.textBoxFunctionality(comment, cmt);
 	}
 	
-	public void setUploadButton(String sourceFile,String outputFile) throws Exception
+	public void setBrowse() throws Exception
 	{
 		BaseClass.buttonFunctionality(uploadButton);
+	}
+	public void setUploadButton(String sourceFile,String outputFile) throws Exception
+	{
 		if(BaseClass.findFileSize(sourceFile)>1)
 		{
 			BaseClass.compressedFile(sourceFile, outputFile);

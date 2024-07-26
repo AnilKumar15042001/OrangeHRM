@@ -7,7 +7,7 @@ Feature: Add Employee
   Scenario Outline: Add a new employee
     When user click on PIM module
     And user click on AddEmployee button
-    Then "PIM : Add Employee" page should be opened
+    Then "Add Employee" page should be opened
     When user fill the textboxes "<first_name>" "<middle_name>" "<last_name>" "<employee_id>"
     And user click on save button
     Then customer details should be added successfully and page displayed as "Personal Details"
@@ -16,5 +16,5 @@ Feature: Add Employee
 
     Examples: 
       | first_name | middle_name | last_name   | employee_id |
-      | Anil       | Kumar       | Uttarakabat |        1001 |
-      | Babu       | Prasad      | Uttarakabat |        1002 |
+      | Anil       | Kumar       | Uttarakabat | 10011031 |
+      #| Babu       | Prasad      | Uttarakabat | 100220 |

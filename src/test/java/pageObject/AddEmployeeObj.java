@@ -12,7 +12,7 @@ public class AddEmployeeObj extends BaseClass{
 	static By txt_firstname=By.name("firstName");
 	static By txt_middlename=By.name("middleName");
 	static By txt_empid=By.xpath("(//input[@class='oxd-input oxd-input--active'])[2]");
-	static By save_btn=By.xpath("button[type='submit']");
+	static By save_btn=By.xpath("//button[@type='submit']");
 	static By cancel_btn=By.xpath("//button[text()=' Cancel ']");
 	static By PIM_module=By.xpath("//a[contains(@href,'PimModule')]");
 	static By addEmp_Submodule=By.linkText("Add Employee");

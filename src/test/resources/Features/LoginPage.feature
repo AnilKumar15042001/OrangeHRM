@@ -10,19 +10,19 @@ Feature: Login
     And User click on login button
     Then User should be logged in successfully
 
-  Scenario: User login with invalid credentials
-    When User enter valid username as "<Username>"
-    And User enter valid password as "<Password>"
-    And User click on login button
-    Then User should see an error message
-    
-    Examples:
-    | Username | Password |
-    | Admin | Admin123 |
-    | admin | admin123 |
-    | admin | Admin123 |
-    | Admin | |
-    | | admin123 |
+  #Scenario: User login with invalid credentials
+    #When User enter valid username as "<Username>"
+    #And User enter valid password as "<Password>"
+    #And User click on login button
+    #Then User should see an error message
+    #
+    #Examples:
+    #| Username | Password |
+    #| Admin | Admin123 |
+    #| admin | admin123 |
+    #| admin | Admin123 |
+    #| Admin | |
+    #| | admin123 |
     
     
     

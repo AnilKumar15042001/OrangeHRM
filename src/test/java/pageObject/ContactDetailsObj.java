@@ -159,7 +159,7 @@ public class ContactDetailsObj extends BaseClass {
 	}
 
 	public void setAdd() throws Exception {
-		BaseClass.scrollToElement(add);
+		BaseClass.scrollToBottomElement(add);
 		BaseClass.buttonFunctionality(add);
 	}
 

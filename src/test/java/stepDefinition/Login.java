@@ -5,8 +5,8 @@ import org.testng.Reporter;
 import io.cucumber.java.en.*;
 import junit.framework.Assert;
 import pageObject.BaseClass;
-import pageObject.Login_Page;
-import pageObject.Logout_Page;
+import pageObject.LoginObj;
+import pageObject.LogoutObj;
 
 public class Login extends BaseClass{
 
@@ -24,17 +24,17 @@ public class Login extends BaseClass{
 
 	@When("User enter valid username as {string}")
 	public void user_enter_valid_username_as(String string) throws Exception {
-	   Login_Page.userName(string);
+	   LoginObj.userName(string);
 	}
 
 	@When("User enter valid password as {string}")
 	public void user_enter_valid_password_as(String string) throws Exception {
-		Login_Page.password(string);
+		LoginObj.password(string);
 	}
 
 	@When("User click on login button")
 	public void user_click_on_login_button() throws Exception {
-	    Login_Page.loginBtn();
+	    LoginObj.loginBtn();
 	}
 
 	@Then("User should be logged in successfully")

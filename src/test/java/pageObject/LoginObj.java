@@ -8,7 +8,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
 
-public class Login_Page extends BaseClass {
+public class LoginObj extends BaseClass {
 
 //objects/elements
 	static By txt_un=By.name("username");

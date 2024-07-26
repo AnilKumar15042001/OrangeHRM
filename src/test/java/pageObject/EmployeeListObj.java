@@ -14,6 +14,11 @@ import org.testng.Reporter;
 public class EmployeeListObj extends BaseClass{
 //Employee information page objects/elements
 	
+	static String rowXpath="//div[@role='rowgroup'][2]/div";
+	static String colXpath="//div[@role='rowgroup'][2]/div[1]/div/div";
+	static String elementXpath="//div[@role='rowgroup'][2]/div[%d]//div[%d]";
+	static String nextButtonXpath="//ul[@class='oxd-pagination__ul']/descendant::button[last()]";
+	
 	static By txt_empname=By.xpath("//div[contains(@class,'orangehrm-full')]//div[1]//div[1]//div[2]//input[1]");
 	static By txt_empid=By.xpath("//div[contains(@class,'grid-item--gutter')]//input[contains(@class,'oxd-input--active')]");
 	static By txt_superVisorname=By.xpath("(//div[contains(@class,'item--gutters')])[1]//input");
@@ -112,20 +117,14 @@ public class EmployeeListObj extends BaseClass{
 	}
 	public static void setEditButton(String nameOrId) {
 		
-		String xpath="//div[@role='rowgroup'][2]/div";
-		String elementXpath="//div[@role='rowgroup'][2]/div[%d]//div[%d]";
 		String editButtonXpath="//div[@role='rowgroup'][2]/div[%d]//button[2]";
-		String nextButtonXpath="//ul[@class='oxd-pagination__ul']/descendant::button[last()]";
-		BaseClass.findElementInPegenation(nameOrId, xpath, elementXpath, editButtonXpath,nextButtonXpath);
+		BaseClass.findElementInPegenation(nameOrId, rowXpath,colXpath, elementXpath, editButtonXpath,nextButtonXpath);
 	}
 
 	public static void setDeleteButton(String nameOrId) throws Exception
 	{
-		String xpath="//div[@role='rowgroup'][2]/div";
-		String elementXpath="//div[@role='rowgroup'][2]/div[%d]//div[%d]";
 		String deleteButtonXpath="//div[@role='rowgroup'][2]/div[%d]//button[1]";
-		String nextButtonXpath="//ul[@class='oxd-pagination__ul']/descendant::button[last()]";
-	    BaseClass.findElementInPegenation(nameOrId, xpath, elementXpath, deleteButtonXpath, nextButtonXpath);
+	    BaseClass.findElementInPegenation(nameOrId, rowXpath,colXpath, elementXpath, deleteButtonXpath, nextButtonXpath);
 	}
 
 	public static void clickCancelAndDeleteButton(String buttonName) throws InterruptedException
