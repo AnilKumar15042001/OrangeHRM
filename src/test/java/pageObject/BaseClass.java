@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 import java.util.Random;
 
@@ -430,11 +431,11 @@ public class BaseClass {
 		System.out.println(value1);
 		if(textBox.isDisplayed() && textBox.isEnabled() && value1.isEmpty())
 		{
-			textBox.sendKeys(value);
+			textBox.sendKeys(decodeString(encodeString(value)));
 		}
 		else if(textBox.isDisplayed() && textBox.isEnabled())
 		{
-			js.executeScript("arguments[0].value=arguments[1];", textBox, value);
+			js.executeScript("arguments[0].value=arguments[1];", textBox, decodeString(encodeString(value)));
 		}
 		else
 		{
@@ -477,14 +478,12 @@ public class BaseClass {
 			    {
 			    	for(int j=2;j<cols;j++)
 			    	{
-			    		String dynamicElementXpath = String.format(elementXpath, i, j);
 			    		wait=new WebDriverWait(driver, Duration.ofSeconds(10));
-			    		WebElement element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(dynamicElementXpath)));
+			    		WebElement element=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format(elementXpath, i, j))));
 			    		if(element.getText().trim().equalsIgnoreCase(empDetails))
 			    		{
 			    			System.out.println(element.getText());
-			    			String dynamicButtonXpath = String.format(buttonXpath, i);
-			    			WebElement button=wait.until(ExpectedConditions.elementToBeClickable(By.xpath(dynamicButtonXpath)));
+			    			WebElement button=wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format(buttonXpath, i))));
 			    			button.click();
 			    			stop=true;
 			    			break;
@@ -593,5 +592,33 @@ public class BaseClass {
 			}
 			Thread.sleep(2000);
 		}while(!text.isEmpty());
+	}
+	
+	public static void selectPage(WebDriver driver,By listOfPages,String pageXpath,String expectedPage) throws Exception
+	{
+		//ul[@class='oxd-pagination__ul']//button
+		//ul[@class='oxd-pagination__ul']//button[text()='"+pageText+"']
+		List<WebElement> pages=driver.findElements(listOfPages);
+		for(WebElement page:pages)
+		{
+			String pageText=page.getText();
+			if(pageText.equals(expectedPage))
+			{
+				driver.findElement(By.xpath(String.format(pageXpath, pageText))).click();
+				break;
+			}
+		}
+	}
+	
+	public static String encodeString(String string)
+	{
+		String encodedString=Base64.getEncoder().encodeToString(string.getBytes());
+		return encodedString;
+	}
+
+	public static String decodeString(String string)
+	{
+		byte[] decodedString=Base64.getDecoder().decode(string);
+		return (new String(decodedString));
 	}
 }

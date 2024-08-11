@@ -26,6 +26,14 @@ public class LoginObj extends BaseClass {
 		BaseClass.textBoxFunctionality(username, un);
 	}
 	
+	public static String getTxt_un() {
+		return driver.findElement(txt_un).getAttribute("value");
+	}
+
+	public static String getTxt_pwd() {
+		return driver.findElement(txt_pwd).getAttribute("value");
+	}
+
 	public static void password(String pwd) throws Exception
 	{
 		WebElement password=driver.findElement(txt_pwd);
